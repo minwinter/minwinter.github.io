@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//minwinter.github.io">
-  <title>Tag: tag2 | minmin的博客</title>
+  <title>CSS实现水平垂直居中 | minmin的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
-<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,编程,代码,开源,IT网站,Developer,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="minmin的博客">
-<meta property="og:url" content="//minwinter.github.io/tags/tag2/index.html">
+  <meta name="description" content="css布局之实现水平垂直居中">
+<meta name="keywords" content="All,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS实现水平垂直居中">
+<meta property="og:url" content="//minwinter.github.io/2017/06/07/css-center/index.html">
 <meta property="og:site_name" content="minmin的博客">
-<meta property="og:description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
+<meta property="og:description" content="css布局之实现水平垂直居中">
+<meta property="og:updated_time" content="2017-06-11T10:41:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="minmin的博客">
-<meta name="twitter:description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
+<meta name="twitter:title" content="CSS实现水平垂直居中">
+<meta name="twitter:description" content="css布局之实现水平垂直居中">
   
     <link rel="alternative" href="/atom.xml" title="minmin的博客" type="application/atom+xml">
   
@@ -52,15 +53,13 @@
 		  <h1 class="header-author"><a href="/">minmin</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">目标还是要有的，万一实现了呐</p>
+		<p class="header-subtitle">梦想还是要有的，万一实现了呐</p>
 		
 
 		<nav class="header-menu">
 			<ul>
 			
 				<li><a href="/">主页</a></li>
-	        
-				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -108,11 +107,9 @@
 			  <h1 class="header-author js-header-author">minmin</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>目标还是要有的，万一实现了呐<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>梦想还是要有的，万一实现了呐<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -132,9 +129,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -149,56 +144,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-css-center" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/27/css-all-name/" class="archive-article-date">
-  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/27/css-all-name/">CSS的缩写以及全称</a>
+    <h1 class="article-title" itemprop="name">
+      CSS实现水平垂直居中
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/06/07/css-center/" class="archive-article-date">
+  	<time datetime="2017-06-07T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天来写写css布局之实现水平垂直居中,css布局主要分为以下几块：</p>
+<ul>
+<li>盒子内部的布局<ul>
+<li>文本的布局</li>
+<li>盒模型本身的布局</li>
+</ul>
+</li>
+<li>盒子之间的布局<ul>
+<li>脱离正常流的盒子布局</li>
+<li>正常流下的盒子布局</li>
+</ul>
+</li>
+</ul>
+<h2 id="【文本的水平垂直居中–固定宽高】"><a href="#【文本的水平垂直居中–固定宽高】" class="headerlink" title="【文本的水平垂直居中–固定宽高】"></a>【文本的水平垂直居中–固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/zzGXbP" target="_blank" rel="external">DEMO链接</a></p>
+<h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">'wrap'</span>&gt;</div><div class="line">我是一行水平垂直居中的文本</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width:300px;</div><div class="line">  height:200px;</div><div class="line">  background-color:<span class="comment">#4173a2;</span></div><div class="line">  text-align:center;/*水平居中*/</div><div class="line">  line-height:200px;/*垂直居中，仅仅针对单行文字*/</div></pre></td></tr></table></figure>
+<h6 id="注：该方法仅仅适用于单行文字的水平垂直居中"><a href="#注：该方法仅仅适用于单行文字的水平垂直居中" class="headerlink" title="注：该方法仅仅适用于单行文字的水平垂直居中"></a>注：该方法仅仅适用于单行文字的水平垂直居中</h6><h2 id="【利用盒模型-paddiing-水平垂直居中-–-固定宽高】"><a href="#【利用盒模型-paddiing-水平垂直居中-–-固定宽高】" class="headerlink" title="【利用盒模型(paddiing)水平垂直居中 – 固定宽高】"></a>【利用盒模型(paddiing)水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/zzGXeE" target="_blank" rel="external">DEMO链接</a></p>
+<h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">'wrap'</span>&gt;</div><div class="line">  &lt;div class=<span class="string">'content'</span>&gt;</div><div class="line">    我是一块水平垂直居中的文本我是</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width:300px;</div><div class="line">  height:300px;</div><div class="line">&#125;</div><div class="line">.content &#123;</div><div class="line">  width:100px;</div><div class="line">  height:100px;</div><div class="line">  background-color:<span class="comment">#8b4b84;</span></div><div class="line">  padding:100px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="注：该方法是将content整个内容块居中"><a href="#注：该方法是将content整个内容块居中" class="headerlink" title="注：该方法是将content整个内容块居中"></a>注：该方法是将content整个内容块居中</h6><h2 id="【利用盒模型-margin-水平垂直居中-–-固定宽高】"><a href="#【利用盒模型-margin-水平垂直居中-–-固定宽高】" class="headerlink" title="【利用盒模型(margin)水平垂直居中 – 固定宽高】"></a>【利用盒模型(margin)水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/bRdyVE" target="_blank" rel="external">DEMO链接</a></p>
+<h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"content"</span>&gt;我是块水平居中&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width:100%;</div><div class="line">  height:300px;</div><div class="line">  background-color:<span class="comment">#8b4b84;</span></div><div class="line">  overflow:hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content &#123;</div><div class="line">  width:100px;</div><div class="line">  height:100px;</div><div class="line">  background-color:<span class="comment">#295782;</span></div><div class="line">  margin-top:100px;</div><div class="line">  margin:100px auto 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="注：该方法也是将content整个内容块居中"><a href="#注：该方法也是将content整个内容块居中" class="headerlink" title="注：该方法也是将content整个内容块居中"></a>注：该方法也是将content整个内容块居中</h6><h2 id="【利用transform水平垂直居中-–-不固定宽高】"><a href="#【利用transform水平垂直居中-–-不固定宽高】" class="headerlink" title="【利用transform水平垂直居中 – 不固定宽高】"></a>【利用transform水平垂直居中 – 不固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/pwjoZY" target="_blank" rel="external">DEMO链接</a></p>
+<h3 id="实现方式：-3"><a href="#实现方式：-3" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"translate"</span>&gt;</div><div class="line">    水平垂直居中水平垂直&lt;br&gt;</div><div class="line">    居中水平垂直居中水平&lt;br&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  position: relative;</div><div class="line">  width: 100%;</div><div class="line">  height: 200px;</div><div class="line">  border:1px solid <span class="comment">#fff;</span></div><div class="line">  background-color: <span class="comment">#8b4b84;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">.translate &#123;</div><div class="line">  position:absolute;</div><div class="line">  top:50%;</div><div class="line">  left:50%;</div><div class="line">  background:<span class="comment">#295782;</span></div><div class="line">  -webkit-transform:translate3d(-50%, -50%, 0);</div><div class="line"> transform:translate3d(-50%,-50%,0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="注：在PC端仅支持IE10及以上版本"><a href="#注：在PC端仅支持IE10及以上版本" class="headerlink" title="注：在PC端仅支持IE10及以上版本"></a>注：在PC端仅支持IE10及以上版本</h6><h2 id="【利用text-align水平垂直居中-–-固定宽高】"><a href="#【利用text-align水平垂直居中-–-固定宽高】" class="headerlink" title="【利用text-align水平垂直居中 – 固定宽高】"></a>【利用text-align水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/weKBoO" target="_blank" rel="external">DEMO链接</a></p>
+<h3 id="实现方式：-4"><a href="#实现方式：-4" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"ele"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width: 100%;</div><div class="line">  height: 400px;</div><div class="line">  text-align: center;</div><div class="line">  background-color: <span class="comment">#295782;</span></div><div class="line">  font-size: 0;</div><div class="line">&#125;</div><div class="line">.ele &#123;</div><div class="line">  position: absolute;</div><div class="line">  display: inline-block;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  margin-left: -50px;</div><div class="line">  margin-top: 150px;</div><div class="line">  background-color: <span class="comment">#8b4b84;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="注：这里text-align-center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的这篇文章"><a href="#注：这里text-align-center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的这篇文章" class="headerlink" title="注：这里text-align:center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的这篇文章"></a>注：这里text-align:center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的<a href="http://www.zhangxinxu.com/wordpress/2011/12/position-absolute-text-align-center/" target="_blank" rel="external">这篇文章</a></h6><h2 id="【利用left-right-top-bottom水平垂直居中-–-固定宽高】"><a href="#【利用left-right-top-bottom水平垂直居中-–-固定宽高】" class="headerlink" title="【利用left,right,top,bottom水平垂直居中 – 固定宽高】"></a>【利用left,right,top,bottom水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/pwjvQb" target="_blank" rel="external">DEMO链接</a></p>
+<h3 id="实现方式：-5"><a href="#实现方式：-5" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"ele"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width: 100%;</div><div class="line">  height: 400px;</div><div class="line">  text-align: center;</div><div class="line">  background-color: <span class="comment">#295782;</span></div><div class="line">  font-size: 0;</div><div class="line">&#125;</div><div class="line">.ele &#123;</div><div class="line">  position: absolute;</div><div class="line">  display: inline-block;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  margin-left: -50px;</div><div class="line">  margin-top: 150px;</div><div class="line">  background-color: <span class="comment">#8b4b84;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度-left-right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，-ele的left-right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left-margin-right的值应该等于包含块的宽度-left的值-right的值-width的值，也就是说margin-left-margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中"><a href="#注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度-left-right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，-ele的left-right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left-margin-right的值应该等于包含块的宽度-left的值-right的值-width的值，也就是说margin-left-margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中" class="headerlink" title="注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度 + left + right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，.ele的left + right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left + margin-right的值应该等于包含块的宽度 - left的值 - right的值 - width的值，也就是说margin-left + margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中"></a>注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度 + left + right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，.ele的left + right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left + margin-right的值应该等于包含块的宽度 - left的值 - right的值 - width的值，也就是说margin-left + margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中</h6><h2 id="【利用float布局水平垂直居中-–-未完待续】"><a href="#【利用float布局水平垂直居中-–-未完待续】" class="headerlink" title="【利用float布局水平垂直居中 – 未完待续】"></a>【利用float布局水平垂直居中 – 未完待续】</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag1</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag3</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -211,74 +252,96 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://minwinter.github.io/2017/06/07/css-center/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/27/css-ellipsis/" class="archive-article-date">
-  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/27/css-ellipsis/">CSS实现单行、多行文本溢出显示省略号</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag1</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag3</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+<nav id="article-nav">
+  
+    <a href="/2017/06/07/js-two-array/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JS创建二维数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/07/js-setInterval/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS中setInterval(code,time)中code传递参数的办法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -301,9 +364,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
@@ -370,15 +433,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tag1</a>
+                <a href="javascript:void(0)" class="js-tag color4">All</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tag2</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tag3</a>
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
             
             <div class="clearfix"></div>
