@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//minwinter.github.io">
-  <title>CSS实现单行、多行文本溢出显示省略号 | minmin的博客</title>
+  <title>箭头函数以及普通函数的区别 | minmin的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="css的缩写以及全称">
-<meta name="keywords" content="All,CSS">
+  <meta name="description" content="普通函数与箭头函数的区别">
+<meta name="keywords" content="All,JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS实现单行、多行文本溢出显示省略号">
-<meta property="og:url" content="//minwinter.github.io/2017/05/27/css-ellipsis/index.html">
+<meta property="og:title" content="箭头函数以及普通函数的区别">
+<meta property="og:url" content="//minwinter.github.io/2017/07/19/function-differ/index.html">
 <meta property="og:site_name" content="minmin的博客">
-<meta property="og:description" content="css的缩写以及全称">
-<meta property="og:updated_time" content="2017-06-11T10:41:51.000Z">
+<meta property="og:description" content="普通函数与箭头函数的区别">
+<meta property="og:updated_time" content="2017-07-21T00:23:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS实现单行、多行文本溢出显示省略号">
-<meta name="twitter:description" content="css的缩写以及全称">
+<meta name="twitter:title" content="箭头函数以及普通函数的区别">
+<meta name="twitter:description" content="普通函数与箭头函数的区别">
   
     <link rel="alternative" href="/atom.xml" title="minmin的博客" type="application/atom+xml">
   
@@ -144,35 +144,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css-ellipsis" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-function-differ" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      CSS实现单行、多行文本溢出显示省略号
+      箭头函数以及普通函数的区别
     </h1>
   
 
         
-        <a href="/2017/05/27/css-ellipsis/" class="archive-article-date">
-  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
+        <a href="/2017/07/19/function-differ/" class="archive-article-date">
+  	<time datetime="2017-07-19T03:42:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天来写写单行多行溢出显示省略号的css</p>
-<h2 id="【单行文本溢出显示】"><a href="#【单行文本溢出显示】" class="headerlink" title="【单行文本溢出显示】"></a>【单行文本溢出显示】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow:hidden;</div><div class="line">text-overflow:ellipsis;</div><div class="line">white-space:nowrap;</div></pre></td></tr></table></figure>
-<h6 id="注：单行文本需要定义宽度"><a href="#注：单行文本需要定义宽度" class="headerlink" title="注：单行文本需要定义宽度"></a>注：单行文本需要定义宽度</h6><h2 id="【多行文本溢出显示实现方式一】"><a href="#【多行文本溢出显示实现方式一】" class="headerlink" title="【多行文本溢出显示实现方式一】"></a>【多行文本溢出显示实现方式一】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">display:-webkit-box;</div><div class="line">-webkit-box-orient:vertical;</div><div class="line">-webkit-line-clamp:3;</div><div class="line">overflow:hidden;</div></pre></td></tr></table></figure>
-<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><ol>
-<li>-webkit-line-clamp用来限制在一个块元素显示的文本的行数。</li>
-<li>display:-webkit-box:将盒子作为弹性伸缩盒子模型显示。<br>1.-webkit-box-orient:设置或检索伸缩盒对象的子元素的排列顺序</li>
-</ol>
-<h6 id="注：该方法只适用于Webkit浏览器以及移动端"><a href="#注：该方法只适用于Webkit浏览器以及移动端" class="headerlink" title="注：该方法只适用于Webkit浏览器以及移动端"></a>注：该方法只适用于Webkit浏览器以及移动端</h6><h2 id="【多行文本溢出显示实现方式二】"><a href="#【多行文本溢出显示实现方式二】" class="headerlink" title="【多行文本溢出显示实现方式二】"></a>【多行文本溢出显示实现方式二】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">position: relative;</div><div class="line">line-height: 20px;</div><div class="line">max-height: 40px;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div><div class="line">p:after &#123;</div><div class="line">content: <span class="string">"..."</span>;</div><div class="line">position: absolute;</div><div class="line">bottom: 0;</div><div class="line">right: 0;</div><div class="line">padding-left: 40px;</div><div class="line">background: -webkit-linear-gradient(left, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -o-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -moz-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: linear-gradient(to right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"><a href="#注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半" class="headerlink" title="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"></a>注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半</h6>
+        <p>之前面试时被问到箭头函数与普通函数的区别，竟然一时语塞，然后随便回答了一下，当时就被面试馆嘲笑了，当时那个悔呀，知识到用时方恨少，所以深深告诫自己，不能一知半解，更不能是不解，哈哈～～今天就好好说道说道，不过也是翻看了 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">MDN箭头函数</a>又有了更深的理解</p>
+<h2 id="【存在即合理】"><a href="#【存在即合理】" class="headerlink" title="【存在即合理】"></a>【存在即合理】</h2><h3 id="箭头函数既然那么方便，普通函数还有存在的必要吗？"><a href="#箭头函数既然那么方便，普通函数还有存在的必要吗？" class="headerlink" title="箭头函数既然那么方便，普通函数还有存在的必要吗？"></a>箭头函数既然那么方便，普通函数还有存在的必要吗？</h3><p>世界万物，我始终相信存在即合理，所以普通函数当然有必要存在啦啦啦～～</p>
+<h2 id="【箭头函数与普通函数的区别】"><a href="#【箭头函数与普通函数的区别】" class="headerlink" title="【箭头函数与普通函数的区别】"></a>【箭头函数与普通函数的区别】</h2><p>正式开始啦，区别如下：</p>
+<h3 id="一、不绑定this"><a href="#一、不绑定this" class="headerlink" title="==一、不绑定this=="></a>==一、不绑定this==</h3><p>1.在箭头函数出现之前，每一个新定义的函数都有自己的this值，例如构造函数的this指向一个新的对象；如果函数作为对象的方法被调用，则指向他的对象</p>
+<p>具体例子如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Person</span></span>()&#123;</div><div class="line">//构造函数Person()定义的‘this’指向新实例对象自己</div><div class="line">    this.age = 0;</div><div class="line">    <span class="built_in">set</span>Timeout(<span class="keyword">function</span> <span class="function"><span class="title">growUp</span></span>()&#123;</div><div class="line">    //在非严格模式下，growUp()函数定义了其内部的‘this’为全局对象</div><div class="line">        this.age++;</div><div class="line">        console.info(this.age);//NAN</div><div class="line">    &#125;,3000);</div><div class="line">&#125;</div><div class="line">var p = new Person();</div></pre></td></tr></table></figure>
+<p>在ES3/ES5中，可以通过给this的值赋给变量来解决。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Person</span></span>()&#123;</div><div class="line">    var _this = this;</div><div class="line">    _this.age = 0;</div><div class="line">    <span class="built_in">set</span>Timeout(<span class="keyword">function</span> <span class="function"><span class="title">growUp</span></span>()&#123;</div><div class="line">        _this.age++;</div><div class="line">        console.info(_this.age);//1</div><div class="line">    &#125;,3000);</div><div class="line">&#125;</div><div class="line">var p = new Person();</div></pre></td></tr></table></figure></p>
+<p>现在用箭头函数也可以解决啦～～</p>
+<p>2.箭头函数会捕获其所在上下文的this值，作为自己的this值。</p>
+<p>具体例子如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Person</span></span>()&#123;</div><div class="line">    this.age = 0;</div><div class="line">    <span class="built_in">set</span>Interval(() =&gt; &#123;</div><div class="line">        // 回调里面的 `this` 变量就指向了期望的那个对象了</div><div class="line">        this.age++; //1</div><div class="line">    &#125;, 3000);</div><div class="line">&#125;</div><div class="line">var p = new Person();</div></pre></td></tr></table></figure>
+<p>3.使用call以及apply调用一个函数时，只是传入参数而已，对this没有影响的。</p>
+<p>具体栗子如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var adder = &#123;</div><div class="line">  base : 1,</div><div class="line"></div><div class="line">  add : <span class="keyword">function</span>(a) &#123;</div><div class="line">    var f = v =&gt; v + this.base;</div><div class="line">    <span class="built_in">return</span> f(a);</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  addThruCall: <span class="keyword">function</span>(a) &#123;</div><div class="line">    var f = v =&gt; v + this.base;</div><div class="line">    var b = &#123;</div><div class="line">      base : 2</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">return</span> f.call(b, a);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">console.log(adder.add(1));         // 输出 2</div><div class="line">console.log(adder.addThruCall(1)); // 仍然输出 2</div></pre></td></tr></table></figure></p>
+<h6 id="注：上述例子看不懂，要自己想想喽，不多陈述啦"><a href="#注：上述例子看不懂，要自己想想喽，不多陈述啦" class="headerlink" title="注：上述例子看不懂，要自己想想喽，不多陈述啦"></a>注：上述例子看不懂，要自己想想喽，不多陈述啦</h6><h3 id="二、不绑定参数，取而代之是用rest参数解决"><a href="#二、不绑定参数，取而代之是用rest参数解决" class="headerlink" title="==二、不绑定参数，取而代之是用rest参数解决=="></a>==二、不绑定参数，取而代之是用rest参数解决==</h3><p>箭头函数不会在内部暴露参数arguments，也不会指向箭头函数的arguments，而是指向箭头函数所在作用域的arguments的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var arguments = 42;</div><div class="line">var arr = () =&gt; arguments;</div><div class="line"></div><div class="line">arr(); // 42</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</div><div class="line">  var f = (i) =&gt; arguments[0]+i;</div><div class="line">  // foo函数的间接参数绑定</div><div class="line">  <span class="built_in">return</span> f(2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(1); // 3</div></pre></td></tr></table></figure>
+<p>箭头函数没有自己的arguments，rest参数可以解决</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</div><div class="line">  var f = (...args) =&gt; args[0];</div><div class="line">  <span class="built_in">return</span> f(2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(1);</div></pre></td></tr></table></figure>
+<h3 id="三、箭头函数当方法使用时候没有this的绑定"><a href="#三、箭头函数当方法使用时候没有this的绑定" class="headerlink" title="==三、箭头函数当方法使用时候没有this的绑定=="></a>==三、箭头函数当方法使用时候没有this的绑定==</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="string">'use strict'</span>;</div><div class="line">var obj = &#123;</div><div class="line">  i: 10,</div><div class="line">  b: () =&gt; console.log(this.i, this),</div><div class="line">  c: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    console.log( this.i, this)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.b();</div><div class="line">// undefined</div><div class="line">obj.c();</div><div class="line">// 10, Object &#123;...&#125;</div></pre></td></tr></table></figure>
+<h3 id="四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误"><a href="#四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误" class="headerlink" title="==四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误=="></a>==四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误==</h3><h3 id="五、箭头函数没有原型属性"><a href="#五、箭头函数没有原型属性" class="headerlink" title="==五、箭头函数没有原型属性=="></a>==五、箭头函数没有原型属性==</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var Foo = () =&gt; &#123;&#125;;</div><div class="line">console.log(Foo.prototype);</div><div class="line">// undefined</div></pre></td></tr></table></figure>
+<h3 id="六、yield关键字并不能在箭头函数中使用，所以不能用作生成器"><a href="#六、yield关键字并不能在箭头函数中使用，所以不能用作生成器" class="headerlink" title="==六、yield关键字并不能在箭头函数中使用，所以不能用作生成器=="></a>==六、yield关键字并不能在箭头函数中使用，所以不能用作生成器==</h3><h2 id="【箭头函数以及应该注意事项】"><a href="#【箭头函数以及应该注意事项】" class="headerlink" title="【箭头函数以及应该注意事项】"></a>【箭头函数以及应该注意事项】</h2><p>1.箭头函数引入作用：更简短的函数书写，对this的词法解析</p>
+<p>2.应注意事项：</p>
+<p>简写，常规写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var func = x =&gt; x * x;</div><div class="line">// 简写函数 省略<span class="built_in">return</span></div><div class="line"></div><div class="line">var func = (x, y) =&gt; &#123; <span class="built_in">return</span> x + y; &#125;;</div><div class="line">//常规编写 明确的返回值</div></pre></td></tr></table></figure>
+<p>返回文字表达式需要括号包起来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var func = () =&gt; (&#123;foo:1&#125;);</div></pre></td></tr></table></figure>
+<p>解析顺序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">let</span> callback;</div><div class="line"></div><div class="line">callback = callback || <span class="function"><span class="title">function</span></span>() &#123;&#125;;</div><div class="line">// ok</div><div class="line">callback = callback || () =&gt; &#123;&#125;;</div><div class="line">// SyntaxError:非法箭头函数属性</div><div class="line">callback = callback || (() =&gt; &#123;&#125;);</div><div class="line">// ok</div></pre></td></tr></table></figure>
+<p>不能换行</p>
+
       
 
       
@@ -210,7 +230,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
         		</li>
       		
 		</ul>
@@ -277,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://minwinter.github.io/2017/05/27/css-ellipsis/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://minwinter.github.io/2017/07/19/function-differ/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +311,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/27/css-layout-center/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CSS实现水平垂直居中
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/26/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2017/06/07/js-two-array/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS创建二维数组</div>
       <i class="icon-circle-right"></i>
     </a>
   

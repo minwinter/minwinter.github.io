@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//minwinter.github.io">
-  <title>CSS实现单行、多行文本溢出显示省略号 | minmin的博客</title>
+  <title>Archives: 2017/7 | minmin的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="css的缩写以及全称">
-<meta name="keywords" content="All,CSS">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CSS实现单行、多行文本溢出显示省略号">
-<meta property="og:url" content="//minwinter.github.io/2017/05/27/css-ellipsis/index.html">
+  <meta name="description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
+<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,编程,代码,开源,IT网站,Developer,html,css,css3,用户体验">
+<meta property="og:type" content="website">
+<meta property="og:title" content="minmin的博客">
+<meta property="og:url" content="//minwinter.github.io/archives/2017/07/index.html">
 <meta property="og:site_name" content="minmin的博客">
-<meta property="og:description" content="css的缩写以及全称">
-<meta property="og:updated_time" content="2017-06-11T10:41:51.000Z">
+<meta property="og:description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS实现单行、多行文本溢出显示省略号">
-<meta name="twitter:description" content="css的缩写以及全称">
+<meta name="twitter:title" content="minmin的博客">
+<meta name="twitter:description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
   
     <link rel="alternative" href="/atom.xml" title="minmin的博客" type="application/atom+xml">
   
@@ -144,63 +143,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css-ellipsis" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      CSS实现单行、多行文本溢出显示省略号
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/07/19/function-differ/" class="archive-article-date">
+  	<time datetime="2017-07-19T03:42:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-19</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/07/19/function-differ/">箭头函数以及普通函数的区别</a>
     </h1>
   
 
-        
-        <a href="/2017/05/27/css-ellipsis/" class="archive-article-date">
-  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天来写写单行多行溢出显示省略号的css</p>
-<h2 id="【单行文本溢出显示】"><a href="#【单行文本溢出显示】" class="headerlink" title="【单行文本溢出显示】"></a>【单行文本溢出显示】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow:hidden;</div><div class="line">text-overflow:ellipsis;</div><div class="line">white-space:nowrap;</div></pre></td></tr></table></figure>
-<h6 id="注：单行文本需要定义宽度"><a href="#注：单行文本需要定义宽度" class="headerlink" title="注：单行文本需要定义宽度"></a>注：单行文本需要定义宽度</h6><h2 id="【多行文本溢出显示实现方式一】"><a href="#【多行文本溢出显示实现方式一】" class="headerlink" title="【多行文本溢出显示实现方式一】"></a>【多行文本溢出显示实现方式一】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">display:-webkit-box;</div><div class="line">-webkit-box-orient:vertical;</div><div class="line">-webkit-line-clamp:3;</div><div class="line">overflow:hidden;</div></pre></td></tr></table></figure>
-<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><ol>
-<li>-webkit-line-clamp用来限制在一个块元素显示的文本的行数。</li>
-<li>display:-webkit-box:将盒子作为弹性伸缩盒子模型显示。<br>1.-webkit-box-orient:设置或检索伸缩盒对象的子元素的排列顺序</li>
-</ol>
-<h6 id="注：该方法只适用于Webkit浏览器以及移动端"><a href="#注：该方法只适用于Webkit浏览器以及移动端" class="headerlink" title="注：该方法只适用于Webkit浏览器以及移动端"></a>注：该方法只适用于Webkit浏览器以及移动端</h6><h2 id="【多行文本溢出显示实现方式二】"><a href="#【多行文本溢出显示实现方式二】" class="headerlink" title="【多行文本溢出显示实现方式二】"></a>【多行文本溢出显示实现方式二】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">position: relative;</div><div class="line">line-height: 20px;</div><div class="line">max-height: 40px;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div><div class="line">p:after &#123;</div><div class="line">content: <span class="string">"..."</span>;</div><div class="line">position: absolute;</div><div class="line">bottom: 0;</div><div class="line">right: 0;</div><div class="line">padding-left: 40px;</div><div class="line">background: -webkit-linear-gradient(left, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -o-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -moz-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: linear-gradient(to right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"><a href="#注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半" class="headerlink" title="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"></a>注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半</h6>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -210,13 +182,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -229,96 +201,17 @@
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://minwinter.github.io/2017/05/27/css-ellipsis/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/05/27/css-layout-center/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CSS实现水平垂直居中
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/05/26/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
+    
 
 
           </div>
@@ -341,8 +234,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

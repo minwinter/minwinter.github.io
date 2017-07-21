@@ -15,7 +15,7 @@
 <meta property="og:url" content="//minwinter.github.io/2017/06/07/js-two-array/index.html">
 <meta property="og:site_name" content="minmin的博客">
 <meta property="og:description" content="JS创建二维数组">
-<meta property="og:updated_time" content="2017-06-11T10:41:51.000Z">
+<meta property="og:updated_time" content="2017-06-25T07:05:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS创建二维数组">
 <meta name="twitter:description" content="JS创建二维数组">
@@ -167,9 +167,9 @@
         <p>今天写跑马灯抽奖插件遇到了二维数组，当时一脸浆糊的，今天来说说吧</p>
 <h2 id="【方式一】"><a href="#【方式一】" class="headerlink" title="【方式一】"></a>【方式一】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = [[1,2],[1,3]];</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
 <h2 id="【方式二】"><a href="#【方式二】" class="headerlink" title="【方式二】"></a>【方式二】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = new array(new array(1,2),new array(<span class="string">'a'</span>,<span class="string">'b'</span>));</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
-<h2 id="【方式二】-1"><a href="#【方式二】-1" class="headerlink" title="【方式二】"></a>【方式二】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = new array(new array(1,2),new array(<span class="string">'a'</span>,<span class="string">'b'</span>));</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
-<h2 id="【方式三】"><a href="#【方式三】" class="headerlink" title="【方式三】"></a>【方式三】</h2><h3 id="实现方式：-3"><a href="#实现方式：-3" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [];//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i].push([]);</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="【方式四】"><a href="#【方式四】" class="headerlink" title="【方式四】"></a>【方式四】</h2><h3 id="实现方式：-4"><a href="#实现方式：-4" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = new array();//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i] = new array();;</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="【方式三】"><a href="#【方式三】" class="headerlink" title="【方式三】"></a>【方式三】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = new array(new array(1,2),new array(<span class="string">'a'</span>,<span class="string">'b'</span>));</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
+<h2 id="【方式四】"><a href="#【方式四】" class="headerlink" title="【方式四】"></a>【方式四】</h2><h3 id="实现方式：-3"><a href="#实现方式：-3" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [];//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i].push([]);</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="【方式五】"><a href="#【方式五】" class="headerlink" title="【方式五】"></a>【方式五】</h2><h3 id="实现方式：-4"><a href="#实现方式：-4" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = new array();//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i] = new array();;</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
 
       
@@ -287,6 +287,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/07/19/function-differ/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          箭头函数以及普通函数的区别
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/07/css-center/" id="article-nav-older" class="article-nav-link-wrap">
