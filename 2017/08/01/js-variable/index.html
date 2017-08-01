@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//minwinter.github.io">
-  <title>Tag: All | minmin的博客</title>
+  <title>let和var以及const之间的区别 | minmin的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
-<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,编程,代码,开源,IT网站,Developer,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="minmin的博客">
-<meta property="og:url" content="//minwinter.github.io/tags/All/index.html">
+  <meta name="description" content="let和var以及const之间的区别">
+<meta name="keywords" content="All,JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="let和var以及const之间的区别">
+<meta property="og:url" content="//minwinter.github.io/2017/08/01/js-variable/index.html">
 <meta property="og:site_name" content="minmin的博客">
-<meta property="og:description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
+<meta property="og:description" content="let和var以及const之间的区别">
+<meta property="og:updated_time" content="2017-08-01T03:07:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="minmin的博客">
-<meta name="twitter:description" content="坐标上海，前端攻城狮，有轻微强迫症，洁癖，认为做好一件事比做完几件事情重要">
+<meta name="twitter:title" content="let和var以及const之间的区别">
+<meta name="twitter:description" content="let和var以及const之间的区别">
   
     <link rel="alternative" href="/atom.xml" title="minmin的博客" type="application/atom+xml">
   
@@ -143,36 +144,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-js-variable" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      let和var以及const之间的区别
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/js-variable/" class="archive-article-date">
+
+        
+        <a href="/2017/08/01/js-variable/" class="archive-article-date">
   	<time datetime="2017-08-01T03:06:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/js-variable/">let和var以及const之间的区别</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在看ES6的知识，因为年纪比较大了，看了总是忘记，索性用笔记录一下，可能牢靠一些，废话不多说，开始啦。。。</p>
+<p>其实在ES6没有出现之前，都是用var来定义变量的，也没有定义常量的功能。通过var来定义的变量，作用域只能是全局作用域或者函数级，并不像JAVA有块级作用域的概念，ES6对这一问题有了改善，从而出现了let以及const。</p>
+<h2 id="【var定义变量】"><a href="#【var定义变量】" class="headerlink" title="【var定义变量】"></a>【var定义变量】</h2><h3 id="1-语法以及说明"><a href="#1-语法以及说明" class="headerlink" title="1. 语法以及说明"></a>1. 语法以及说明</h3><p>可声明一个或者多个变量，多个变量需使用逗号(,)分隔，声明变量的同时可以对其初始化。</p>
+<h3 id="2-使用以及特点"><a href="#2-使用以及特点" class="headerlink" title="2. 使用以及特点"></a>2. 使用以及特点</h3><p> 2.1 变量提升的原则</p>
+<p>例子如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;</div><div class="line">	console.info(i);</div><div class="line">	var i = 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>var由于变量提升，输出的是underfine，不是产生Reference错误，如果换成let，就不一样啦～～</p>
+<p> 2.2 作用域的不同</p>
+<p> 例子如下：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> var a = 5;</div><div class="line"><span class="keyword">if</span>(a === 5)&#123;</div><div class="line">	var a = 10;</div><div class="line">	console.info(a); //10</div><div class="line">&#125;</div><div class="line">console.info(a); //10</div></pre></td></tr></table></figure></p>
+<p> 2.3 为非声明变量赋值会隐式创建一个全局的变量</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;</div><div class="line">	a = 10;</div><div class="line">	console.info(a); //10</div><div class="line">&#125;</div><div class="line"><span class="built_in">test</span>();</div><div class="line">console.info(a); //10</div></pre></td></tr></table></figure>
+<p> 2.4 准许重复声明</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;</div><div class="line">	var a = 10;</div><div class="line">	var a = 13;</div><div class="line">	console.info(a);</div><div class="line">&#125;</div><div class="line"><span class="built_in">test</span>()</div></pre></td></tr></table></figure>
+<h2 id="【let定义变量】"><a href="#【let定义变量】" class="headerlink" title="【let定义变量】"></a>【let定义变量】</h2><h3 id="1-语法以及说明-1"><a href="#1-语法以及说明-1" class="headerlink" title="1. 语法以及说明"></a>1. 语法以及说明</h3><p>用于定义块级变量，其语法结构与var类似，</p>
+<h3 id="2-与var的异同"><a href="#2-与var的异同" class="headerlink" title="2. 与var的异同"></a>2. 与var的异同</h3><p>2.1 不存在变量提升 例子请将上述var换成let</p>
+<p>2.2 let的作用域是块，而var作用域是全局或者函数级的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">f1</span></span>()&#123;</div><div class="line">    <span class="built_in">let</span> n = 5;</div><div class="line">    <span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">       <span class="built_in">let</span> n = 10;</div><div class="line">    &#125;</div><div class="line">    console.log(n); //5</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.3 暂存性死区 只要块级作用域内存在let命令，它所声明的变量就绑定这个区域，不再受外部影响</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var temp = 123;</div><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">  tmp = <span class="string">'abc'</span>;//ReferenceError</div><div class="line">  <span class="built_in">let</span> tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在声明变量之前就使用这些变量，就会报错</p>
+<p>2.4 let不准许在相同的作用域中，重复声明同一个变量</p>
+<h2 id="【const定义变量】"><a href="#【const定义变量】" class="headerlink" title="【const定义变量】"></a>【const定义变量】</h2><h3 id="1-语法以及说明-2"><a href="#1-语法以及说明-2" class="headerlink" title="1. 语法以及说明"></a>1. 语法以及说明</h3><p>用于声明一个或者多个常量，声明必须进行初始化，且初始化后值不可变</p>
+<h3 id="2-let的注意事项"><a href="#2-let的注意事项" class="headerlink" title="2. let的注意事项"></a>2. let的注意事项</h3><p>2.1 一旦声明，其值不可变。也就是说声明必须立即初始化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const PI = 3.1415;</div><div class="line">console.info(PI); //3.1415</div><div class="line">PI = 3; //TypeError:<span class="string">'PI'</span> is <span class="built_in">read</span>-only</div></pre></td></tr></table></figure>
+<p>2.2 复合类型的变量，指向的不是数据，而是其所在的地址，只要保证变量名指向的地址不变就好了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const foo = &#123;&#125;;</div><div class="line">foo.prop = 123;</div><div class="line">console.info(foo.prop);</div></pre></td></tr></table></figure>
+<p>如果想把对象冻结，应该使用Object.freeze方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const foo = Object.freeze(&#123;&#125;);</div><div class="line">foo.prop = 123;//不起作用啦～～</div></pre></td></tr></table></figure>
+<p>与var的异同请参照let与var的比较</p>
+<h2 id="【let、const】"><a href="#【let、const】" class="headerlink" title="【let、const】"></a>【let、const】</h2><p>很多人说声明变量时建议使用const而不是let，为什么呢？</p>
+<p>1.const 可以用在对象、数组与函数上，常量一声明就要赋值，犯错机会少</p>
+<p>2.JS引擎也可以做优化。虽然JS语言上并没有感受到差异，但是实际上引擎里有区分常量和变量，并且JS语言是弱语言的脚本表情，常量一声明就赋值，就是立即决定是什么类型的值，自然效能比变量好。</p>
+<p>所以大概9成的情况都是用const，优先使用const是推荐的撰写风格，只有像for回圈语句，或一些需要再赋值的情况才会用到let。当然，你要全部用let也可以正常运作，只是没优化与习惯不好而已。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -188,7 +241,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -201,388 +254,87 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://minwinter.github.io/2017/08/01/js-variable/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/19/function-differ/" class="archive-article-date">
-  	<time datetime="2017-07-19T03:42:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/19/function-differ/">箭头函数以及普通函数的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/07/js-two-array/" class="archive-article-date">
-  	<time datetime="2017-06-07T15:57:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/js-two-array/">JS创建二维数组</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/07/css-center/" class="archive-article-date">
-  	<time datetime="2017-06-07T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/css-center/">CSS实现水平垂直居中</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/07/js-setInterval/" class="archive-article-date">
-  	<time datetime="2017-06-07T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/js-setInterval/">JS中setInterval(code,time)中code传递参数的办法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/27/css-all-name/" class="archive-article-date">
-  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/27/css-all-name/">CSS的缩写以及全称</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/27/css-ellipsis/" class="archive-article-date">
-  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/27/css-ellipsis/">CSS实现单行、多行文本溢出显示省略号</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/27/css-layout-center/" class="archive-article-date">
-  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/27/css-layout-center/">CSS实现水平垂直居中</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/07/19/function-differ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">箭头函数以及普通函数的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -605,9 +357,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

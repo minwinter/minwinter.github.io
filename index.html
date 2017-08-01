@@ -145,6 +145,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-variable" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/01/js-variable/">let和var以及const之间的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/01/js-variable/" class="archive-article-date">
+  	<time datetime="2017-08-01T03:06:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在看ES6的知识，因为年纪比较大了，看了总是忘记，索性用笔记录一下，可能牢靠一些，废话不多说，开始啦。。。</p>
+<p>其实在ES6没有出现之前，都是用var来定义变量的，也没有定义常量的功能。通过var来定义的变量，作用域只能是全局作用域或者函数级，并不像JAVA有块级作用域的概念，ES6对这一问题有了改善，从而出现了let以及const。</p>
+<h2 id="【var定义变量】"><a href="#【var定义变量】" class="headerlink" title="【var定义变量】"></a>【var定义变量】</h2><h3 id="1-语法以及说明"><a href="#1-语法以及说明" class="headerlink" title="1. 语法以及说明"></a>1. 语法以及说明</h3><p>可声明一个或者多个变量，多个变量需使用逗号(,)分隔，声明变量的同时可以对其初始化。</p>
+<h3 id="2-使用以及特点"><a href="#2-使用以及特点" class="headerlink" title="2. 使用以及特点"></a>2. 使用以及特点</h3><p> 2.1 变量提升的原则</p>
+<p>例子如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;</div><div class="line">	console.info(i);</div><div class="line">	var i = 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>var由于变量提升，输出的是underfine，不是产生Reference错误，如果换成let，就不一样啦～～</p>
+<p> 2.2 作用域的不同</p>
+<p> 例子如下：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> var a = 5;</div><div class="line"><span class="keyword">if</span>(a === 5)&#123;</div><div class="line">	var a = 10;</div><div class="line">	console.info(a); //10</div><div class="line">&#125;</div><div class="line">console.info(a); //10</div></pre></td></tr></table></figure></p>
+<p> 2.3 为非声明变量赋值会隐式创建一个全局的变量</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;</div><div class="line">	a = 10;</div><div class="line">	console.info(a); //10</div><div class="line">&#125;</div><div class="line"><span class="built_in">test</span>();</div><div class="line">console.info(a); //10</div></pre></td></tr></table></figure>
+<p> 2.4 准许重复声明</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;</div><div class="line">	var a = 10;</div><div class="line">	var a = 13;</div><div class="line">	console.info(a);</div><div class="line">&#125;</div><div class="line"><span class="built_in">test</span>()</div></pre></td></tr></table></figure>
+<h2 id="【let定义变量】"><a href="#【let定义变量】" class="headerlink" title="【let定义变量】"></a>【let定义变量】</h2><h3 id="1-语法以及说明-1"><a href="#1-语法以及说明-1" class="headerlink" title="1. 语法以及说明"></a>1. 语法以及说明</h3><p>用于定义块级变量，其语法结构与var类似，</p>
+<h3 id="2-与var的异同"><a href="#2-与var的异同" class="headerlink" title="2. 与var的异同"></a>2. 与var的异同</h3><p>2.1 不存在变量提升 例子请将上述var换成let</p>
+<p>2.2 let的作用域是块，而var作用域是全局或者函数级的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">f1</span></span>()&#123;</div><div class="line">    <span class="built_in">let</span> n = 5;</div><div class="line">    <span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">       <span class="built_in">let</span> n = 10;</div><div class="line">    &#125;</div><div class="line">    console.log(n); //5</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.3 暂存性死区 只要块级作用域内存在let命令，它所声明的变量就绑定这个区域，不再受外部影响</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var temp = 123;</div><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">  tmp = <span class="string">'abc'</span>;//ReferenceError</div><div class="line">  <span class="built_in">let</span> tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在声明变量之前就使用这些变量，就会报错</p>
+<p>2.4 let不准许在相同的作用域中，重复声明同一个变量</p>
+<h2 id="【const定义变量】"><a href="#【const定义变量】" class="headerlink" title="【const定义变量】"></a>【const定义变量】</h2><h3 id="1-语法以及说明-2"><a href="#1-语法以及说明-2" class="headerlink" title="1. 语法以及说明"></a>1. 语法以及说明</h3><p>用于声明一个或者多个常量，声明必须进行初始化，且初始化后值不可变</p>
+<h3 id="2-let的注意事项"><a href="#2-let的注意事项" class="headerlink" title="2. let的注意事项"></a>2. let的注意事项</h3><p>2.1 一旦声明，其值不可变。也就是说声明必须立即初始化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const PI = 3.1415;</div><div class="line">console.info(PI); //3.1415</div><div class="line">PI = 3; //TypeError:<span class="string">'PI'</span> is <span class="built_in">read</span>-only</div></pre></td></tr></table></figure>
+<p>2.2 复合类型的变量，指向的不是数据，而是其所在的地址，只要保证变量名指向的地址不变就好了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const foo = &#123;&#125;;</div><div class="line">foo.prop = 123;</div><div class="line">console.info(foo.prop);</div></pre></td></tr></table></figure>
+<p>如果想把对象冻结，应该使用Object.freeze方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const foo = Object.freeze(&#123;&#125;);</div><div class="line">foo.prop = 123;//不起作用啦～～</div></pre></td></tr></table></figure>
+<p>与var的异同请参照let与var的比较</p>
+<h2 id="【let、const】"><a href="#【let、const】" class="headerlink" title="【let、const】"></a>【let、const】</h2><p>很多人说声明变量时建议使用const而不是let，为什么呢？</p>
+<p>1.const 可以用在对象、数组与函数上，常量一声明就要赋值，犯错机会少</p>
+<p>2.JS引擎也可以做优化。虽然JS语言上并没有感受到差异，但是实际上引擎里有区分常量和变量，并且JS语言是弱语言的脚本表情，常量一声明就赋值，就是立即决定是什么类型的值，自然效能比变量好。</p>
+<p>所以大概9成的情况都是用const，优先使用const是推荐的撰写风格，只有像for回圈语句，或一些需要再赋值的情况才会用到let。当然，你要全部用let也可以正常运作，只是没优化与习惯不好而已。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/01/js-variable/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-function-differ" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -168,7 +274,7 @@
         <p>之前面试时被问到箭头函数与普通函数的区别，竟然一时语塞，然后随便回答了一下，当时就被面试馆嘲笑了，当时那个悔呀，知识到用时方恨少，所以深深告诫自己，不能一知半解，更不能是不解，哈哈～～今天就好好说道说道，不过也是翻看了 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">MDN箭头函数</a>又有了更深的理解</p>
 <h2 id="【存在即合理】"><a href="#【存在即合理】" class="headerlink" title="【存在即合理】"></a>【存在即合理】</h2><h3 id="箭头函数既然那么方便，普通函数还有存在的必要吗？"><a href="#箭头函数既然那么方便，普通函数还有存在的必要吗？" class="headerlink" title="箭头函数既然那么方便，普通函数还有存在的必要吗？"></a>箭头函数既然那么方便，普通函数还有存在的必要吗？</h3><p>世界万物，我始终相信存在即合理，所以普通函数当然有必要存在啦啦啦～～</p>
 <h2 id="【箭头函数与普通函数的区别】"><a href="#【箭头函数与普通函数的区别】" class="headerlink" title="【箭头函数与普通函数的区别】"></a>【箭头函数与普通函数的区别】</h2><p>正式开始啦，区别如下：</p>
-<h3 id="一、不绑定this"><a href="#一、不绑定this" class="headerlink" title="==一、不绑定this=="></a>==一、不绑定this==</h3><p>1.在箭头函数出现之前，每一个新定义的函数都有自己的this值，例如构造函数的this指向一个新的对象；如果函数作为对象的方法被调用，则指向他的对象</p>
+<h3 id="一、不绑定this"><a href="#一、不绑定this" class="headerlink" title="一、不绑定this"></a>一、不绑定this</h3><p>1.在箭头函数出现之前，每一个新定义的函数都有自己的this值，例如构造函数的this指向一个新的对象；如果函数作为对象的方法被调用，则指向他的对象</p>
 <p>具体例子如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Person</span></span>()&#123;</div><div class="line">//构造函数Person()定义的‘this’指向新实例对象自己</div><div class="line">    this.age = 0;</div><div class="line">    <span class="built_in">set</span>Timeout(<span class="keyword">function</span> <span class="function"><span class="title">growUp</span></span>()&#123;</div><div class="line">    //在非严格模式下，growUp()函数定义了其内部的‘this’为全局对象</div><div class="line">        this.age++;</div><div class="line">        console.info(this.age);//NAN</div><div class="line">    &#125;,3000);</div><div class="line">&#125;</div><div class="line">var p = new Person();</div></pre></td></tr></table></figure>
 <p>在ES3/ES5中，可以通过给this的值赋给变量来解决。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Person</span></span>()&#123;</div><div class="line">    var _this = this;</div><div class="line">    _this.age = 0;</div><div class="line">    <span class="built_in">set</span>Timeout(<span class="keyword">function</span> <span class="function"><span class="title">growUp</span></span>()&#123;</div><div class="line">        _this.age++;</div><div class="line">        console.info(_this.age);//1</div><div class="line">    &#125;,3000);</div><div class="line">&#125;</div><div class="line">var p = new Person();</div></pre></td></tr></table></figure></p>
@@ -178,13 +284,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Person</span></span>()&#123;</div><div class="line">    this.age = 0;</div><div class="line">    <span class="built_in">set</span>Interval(() =&gt; &#123;</div><div class="line">        // 回调里面的 `this` 变量就指向了期望的那个对象了</div><div class="line">        this.age++; //1</div><div class="line">    &#125;, 3000);</div><div class="line">&#125;</div><div class="line">var p = new Person();</div></pre></td></tr></table></figure>
 <p>3.使用call以及apply调用一个函数时，只是传入参数而已，对this没有影响的。</p>
 <p>具体栗子如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var adder = &#123;</div><div class="line">  base : 1,</div><div class="line"></div><div class="line">  add : <span class="keyword">function</span>(a) &#123;</div><div class="line">    var f = v =&gt; v + this.base;</div><div class="line">    <span class="built_in">return</span> f(a);</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  addThruCall: <span class="keyword">function</span>(a) &#123;</div><div class="line">    var f = v =&gt; v + this.base;</div><div class="line">    var b = &#123;</div><div class="line">      base : 2</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">return</span> f.call(b, a);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">console.log(adder.add(1));         // 输出 2</div><div class="line">console.log(adder.addThruCall(1)); // 仍然输出 2</div></pre></td></tr></table></figure></p>
-<h6 id="注：上述例子看不懂，要自己想想喽，不多陈述啦"><a href="#注：上述例子看不懂，要自己想想喽，不多陈述啦" class="headerlink" title="注：上述例子看不懂，要自己想想喽，不多陈述啦"></a>注：上述例子看不懂，要自己想想喽，不多陈述啦</h6><h3 id="二、不绑定参数，取而代之是用rest参数解决"><a href="#二、不绑定参数，取而代之是用rest参数解决" class="headerlink" title="==二、不绑定参数，取而代之是用rest参数解决=="></a>==二、不绑定参数，取而代之是用rest参数解决==</h3><p>箭头函数不会在内部暴露参数arguments，也不会指向箭头函数的arguments，而是指向箭头函数所在作用域的arguments的值</p>
+<h6 id="注：上述例子看不懂，要自己想想喽，不多陈述啦"><a href="#注：上述例子看不懂，要自己想想喽，不多陈述啦" class="headerlink" title="注：上述例子看不懂，要自己想想喽，不多陈述啦"></a>注：上述例子看不懂，要自己想想喽，不多陈述啦</h6><h3 id="二、不绑定参数，取而代之是用rest参数解决"><a href="#二、不绑定参数，取而代之是用rest参数解决" class="headerlink" title="二、不绑定参数，取而代之是用rest参数解决"></a>二、不绑定参数，取而代之是用rest参数解决</h3><p>箭头函数不会在内部暴露参数arguments，也不会指向箭头函数的arguments，而是指向箭头函数所在作用域的arguments的值</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var arguments = 42;</div><div class="line">var arr = () =&gt; arguments;</div><div class="line"></div><div class="line">arr(); // 42</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</div><div class="line">  var f = (i) =&gt; arguments[0]+i;</div><div class="line">  // foo函数的间接参数绑定</div><div class="line">  <span class="built_in">return</span> f(2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(1); // 3</div></pre></td></tr></table></figure>
 <p>箭头函数没有自己的arguments，rest参数可以解决</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</div><div class="line">  var f = (...args) =&gt; args[0];</div><div class="line">  <span class="built_in">return</span> f(2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(1);</div></pre></td></tr></table></figure>
-<h3 id="三、箭头函数当方法使用时候没有this的绑定"><a href="#三、箭头函数当方法使用时候没有this的绑定" class="headerlink" title="==三、箭头函数当方法使用时候没有this的绑定=="></a>==三、箭头函数当方法使用时候没有this的绑定==</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="string">'use strict'</span>;</div><div class="line">var obj = &#123;</div><div class="line">  i: 10,</div><div class="line">  b: () =&gt; console.log(this.i, this),</div><div class="line">  c: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    console.log( this.i, this)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.b();</div><div class="line">// undefined</div><div class="line">obj.c();</div><div class="line">// 10, Object &#123;...&#125;</div></pre></td></tr></table></figure>
-<h3 id="四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误"><a href="#四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误" class="headerlink" title="==四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误=="></a>==四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误==</h3><h3 id="五、箭头函数没有原型属性"><a href="#五、箭头函数没有原型属性" class="headerlink" title="==五、箭头函数没有原型属性=="></a>==五、箭头函数没有原型属性==</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var Foo = () =&gt; &#123;&#125;;</div><div class="line">console.log(Foo.prototype);</div><div class="line">// undefined</div></pre></td></tr></table></figure>
-<h3 id="六、yield关键字并不能在箭头函数中使用，所以不能用作生成器"><a href="#六、yield关键字并不能在箭头函数中使用，所以不能用作生成器" class="headerlink" title="==六、yield关键字并不能在箭头函数中使用，所以不能用作生成器=="></a>==六、yield关键字并不能在箭头函数中使用，所以不能用作生成器==</h3><h2 id="【箭头函数以及应该注意事项】"><a href="#【箭头函数以及应该注意事项】" class="headerlink" title="【箭头函数以及应该注意事项】"></a>【箭头函数以及应该注意事项】</h2><p>1.箭头函数引入作用：更简短的函数书写，对this的词法解析</p>
+<h3 id="三、箭头函数当方法使用时候没有this的绑定"><a href="#三、箭头函数当方法使用时候没有this的绑定" class="headerlink" title="三、箭头函数当方法使用时候没有this的绑定"></a>三、箭头函数当方法使用时候没有this的绑定</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="string">'use strict'</span>;</div><div class="line">var obj = &#123;</div><div class="line">  i: 10,</div><div class="line">  b: () =&gt; console.log(this.i, this),</div><div class="line">  c: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    console.log( this.i, this)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.b();</div><div class="line">// undefined</div><div class="line">obj.c();</div><div class="line">// 10, Object &#123;...&#125;</div></pre></td></tr></table></figure>
+<h3 id="四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误"><a href="#四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误" class="headerlink" title="四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误"></a>四、箭头函数不能使用new操作符，不能用作构造器，和new一起使用会抛出错误</h3><h3 id="五、箭头函数没有原型属性"><a href="#五、箭头函数没有原型属性" class="headerlink" title="五、箭头函数没有原型属性"></a>五、箭头函数没有原型属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var Foo = () =&gt; &#123;&#125;;</div><div class="line">console.log(Foo.prototype);</div><div class="line">// undefined</div></pre></td></tr></table></figure>
+<h3 id="六、yield关键字并不能在箭头函数中使用，所以不能用作生成器"><a href="#六、yield关键字并不能在箭头函数中使用，所以不能用作生成器" class="headerlink" title="六、yield关键字并不能在箭头函数中使用，所以不能用作生成器"></a>六、yield关键字并不能在箭头函数中使用，所以不能用作生成器</h3><h2 id="【箭头函数以及应该注意事项】"><a href="#【箭头函数以及应该注意事项】" class="headerlink" title="【箭头函数以及应该注意事项】"></a>【箭头函数以及应该注意事项】</h2><p>1.箭头函数引入作用：更简短的函数书写，对this的词法解析</p>
 <p>2.应注意事项：</p>
 <p>简写，常规写</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var func = x =&gt; x * x;</div><div class="line">// 简写函数 省略<span class="built_in">return</span></div><div class="line"></div><div class="line">var func = (x, y) =&gt; &#123; <span class="built_in">return</span> x + y; &#125;;</div><div class="line">//常规编写 明确的返回值</div></pre></td></tr></table></figure>
@@ -771,62 +877,10 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/26/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/26/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-25T16:04:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/26/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
