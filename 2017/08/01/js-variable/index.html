@@ -15,7 +15,7 @@
 <meta property="og:url" content="//minwinter.github.io/2017/08/01/js-variable/index.html">
 <meta property="og:site_name" content="minmin的博客">
 <meta property="og:description" content="let和var以及const之间的区别">
-<meta property="og:updated_time" content="2017-08-01T03:07:33.000Z">
+<meta property="og:updated_time" content="2017-09-26T09:38:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="let和var以及const之间的区别">
 <meta name="twitter:description" content="let和var以及const之间的区别">
@@ -186,7 +186,7 @@
 <p>在声明变量之前就使用这些变量，就会报错</p>
 <p>2.4 let不准许在相同的作用域中，重复声明同一个变量</p>
 <h2 id="【const定义变量】"><a href="#【const定义变量】" class="headerlink" title="【const定义变量】"></a>【const定义变量】</h2><h3 id="1-语法以及说明-2"><a href="#1-语法以及说明-2" class="headerlink" title="1. 语法以及说明"></a>1. 语法以及说明</h3><p>用于声明一个或者多个常量，声明必须进行初始化，且初始化后值不可变</p>
-<h3 id="2-let的注意事项"><a href="#2-let的注意事项" class="headerlink" title="2. let的注意事项"></a>2. let的注意事项</h3><p>2.1 一旦声明，其值不可变。也就是说声明必须立即初始化。</p>
+<h3 id="2-const的注意事项"><a href="#2-const的注意事项" class="headerlink" title="2. const的注意事项"></a>2. const的注意事项</h3><p>2.1 一旦声明，其值不可变。也就是说声明必须立即初始化。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const PI = 3.1415;</div><div class="line">console.info(PI); //3.1415</div><div class="line">PI = 3; //TypeError:<span class="string">'PI'</span> is <span class="built_in">read</span>-only</div></pre></td></tr></table></figure>
 <p>2.2 复合类型的变量，指向的不是数据，而是其所在的地址，只要保证变量名指向的地址不变就好了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const foo = &#123;&#125;;</div><div class="line">foo.prop = 123;</div><div class="line">console.info(foo.prop);</div></pre></td></tr></table></figure>
