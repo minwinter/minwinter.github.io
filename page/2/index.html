@@ -145,6 +145,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css-layout-center" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/27/css-layout-center/">CSS实现水平垂直居中</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/27/css-layout-center/" class="archive-article-date">
+  	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天来写写css布局之实现水平垂直居中</p>
+<h2 id="【单行文本溢出显示】"><a href="#【单行文本溢出显示】" class="headerlink" title="【单行文本溢出显示】"></a>【单行文本溢出显示】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow:hidden;</div><div class="line">text-overflow:ellipsis;</div><div class="line">white-space:nowrap;</div></pre></td></tr></table></figure>
+<h6 id="注：单行文本需要定义宽度"><a href="#注：单行文本需要定义宽度" class="headerlink" title="注：单行文本需要定义宽度"></a>注：单行文本需要定义宽度</h6><h2 id="【多行文本溢出显示实现方式一】"><a href="#【多行文本溢出显示实现方式一】" class="headerlink" title="【多行文本溢出显示实现方式一】"></a>【多行文本溢出显示实现方式一】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">display:-webkit-box;</div><div class="line">-webkit-box-orient:vertical;</div><div class="line">-webkit-line-clamp:3;</div><div class="line">overflow:hidden;</div></pre></td></tr></table></figure>
+<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><ol>
+<li>-webkit-line-clamp用来限制在一个块元素显示的文本的行数。</li>
+<li>display:-webkit-box:将盒子作为弹性伸缩盒子模型显示。<br>1.-webkit-box-orient:设置或检索伸缩盒对象的子元素的排列顺序</li>
+</ol>
+<h6 id="注：该方法只适用于Webkit浏览器以及移动端"><a href="#注：该方法只适用于Webkit浏览器以及移动端" class="headerlink" title="注：该方法只适用于Webkit浏览器以及移动端"></a>注：该方法只适用于Webkit浏览器以及移动端</h6><h2 id="【多行文本溢出显示实现方式二】"><a href="#【多行文本溢出显示实现方式二】" class="headerlink" title="【多行文本溢出显示实现方式二】"></a>【多行文本溢出显示实现方式二】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">position: relative;</div><div class="line">line-height: 20px;</div><div class="line">max-height: 40px;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div><div class="line">p:after &#123;</div><div class="line">content: <span class="string">"..."</span>;</div><div class="line">position: absolute;</div><div class="line">bottom: 0;</div><div class="line">right: 0;</div><div class="line">padding-left: 40px;</div><div class="line">background: -webkit-linear-gradient(left, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -o-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -moz-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: linear-gradient(to right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"><a href="#注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半" class="headerlink" title="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"></a>注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半</h6>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/27/css-layout-center/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
