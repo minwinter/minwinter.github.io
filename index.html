@@ -145,6 +145,121 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-有趣的setTimeout以及Promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/02/js-有趣的setTimeout以及Promise/">有趣的setTimeout以及Promise</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/02/js-有趣的setTimeout以及Promise/" class="archive-article-date">
+  	<time datetime="2018-02-02T03:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由一道题目引发的探究，来看下面的题目啦～～</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">    setTimeout(function()&#123;</div><div class="line">        console.info(&apos;one&apos;);</div><div class="line">    &#125;,0);</div><div class="line">    new Promise(function(resolve,reject)&#123;</div><div class="line">        console.info(&apos;two&apos;);</div><div class="line">        for(var i=0;i&lt;10;i++)&#123;</div><div class="line">            if(i===9)&#123;</div><div class="line">                resolve();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        console.info(&apos;three&apos;);</div><div class="line">    &#125;).then(function()&#123;</div><div class="line">        console.info(&apos;four&apos;);</div><div class="line">    &#125;)</div><div class="line">    console.info(&apos;five&apos;);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>有没有哪位可爱的小伙伴默默的说，”one”、”two”、”three”、”four”、”five”，这样的小伙伴默默的去chrome上验证吧。那我们先来弄明白javascript的执行机制吧。</p>
+<h2 id="1-javascript"><a href="#1-javascript" class="headerlink" title="1.javascript"></a>1.javascript</h2><p>就记住一句话，javascript是单线程语言，javascript版的“多线程”都是单线程模拟出来的，都是纸老虎，纸老虎！！</p>
+<h2 id="2-javascript事件循环"><a href="#2-javascript事件循环" class="headerlink" title="2.javascript事件循环"></a>2.javascript事件循环</h2><p>js是单线程，就像是去银行只有一个窗口，办理业务就要排队，好痛苦。但是如果一个任务需要执行很久很久，肿么办？等着呗。但是聪明的程序员怎么会忍受一个任务执行那么长时间，哈哈～～，于是把任务分成了两类：</p>
+<ul>
+<li>同步任务</li>
+<li>异步任务</li>
+</ul>
+<p>同步任务以及异步任务会进入不同的“场所”，同步的进入主线程，异步的进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程执行完毕为空，就会去Event Queue读取对应的函数，进入主线程执行。</p>
+<p>上述过程不断重复，就是我们常说的Event Loop(事件循环)</p>
+<h2 id="3-setTimeout"><a href="#3-setTimeout" class="headerlink" title="3.setTimeout"></a>3.setTimeout</h2><p>我们经常会用到setTimeout函数，异步延时执行嘛，看个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setTimeout(() =&gt; &#123;</div><div class="line">    task()</div><div class="line">&#125;,3000)</div><div class="line"></div><div class="line">sleep(100000)</div></pre></td></tr></table></figure>
+<p>我们来说说上面的代码执行流程：</p>
+<ul>
+<li>task()进入Event Table并注册，计时开始。</li>
+<li>执行sleep函数</li>
+<li>3秒之后，task()进入Event Queue,但是sleep太慢了，还没执行完，只能等着啦。</li>
+<li>sleep执行完啦，task()从Event Queue进入主线程执行啦。</li>
+</ul>
+<h6 id="注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"><a href="#注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。" class="headerlink" title="注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"></a>注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。</h6><h2 id="4-Promise"><a href="#4-Promise" class="headerlink" title="4.Promise"></a>4.Promise</h2><p>Promise的功能和描述就在这一篇就不做介绍了，可自行学习<br><a href="http://note.youdao.com/" target="_blank" rel="external">Promise学习</a>，来看一个例子吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let promise = new Promise(function(resolve, reject) &#123;</div><div class="line">  console.log(&apos;Promise&apos;);</div><div class="line">  resolve();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">promise.then(function() &#123;</div><div class="line">  console.log(&apos;resolved.&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">console.log(&apos;Hi!&apos;);</div><div class="line"> //执行结果</div><div class="line"> // Promise</div><div class="line">// Hi!</div><div class="line">// resolved</div></pre></td></tr></table></figure>
+<p>上面的代码，Promise新建后立即执行，首先输出的是Promise，然后当前脚本的所有的同步任务执行完之后才执行，所以resolve最后。</p>
+<h2 id="5-宏任务，微任务"><a href="#5-宏任务，微任务" class="headerlink" title="5.宏任务，微任务"></a>5.宏任务，微任务</h2><p>除了同步任务和异步任务，还有更精细的定义：</p>
+<ul>
+<li>macro-task(宏任务):整体代码script、setTimeout、setInterval</li>
+<li>micro-task(微任务)：Promise</li>
+</ul>
+<p>不同类型的任务会进入对应的Event Queue。</p>
+<p>进入整体代码(宏任务)后，开始第一次循环。接着执行所有的微任务。然后再从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。总之，记住一句话，微任务Promise是在本轮“事件循环”结束时执行，而宏任务(setTimeout、setInterval)是在下一轮“事件循环”开始时执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">setTimeout(function()&#123;</div><div class="line">        console.info(&apos;one&apos;);</div><div class="line">    &#125;,0);</div><div class="line">    new Promise(function(resolve,reject)&#123;</div><div class="line">        console.info(&apos;two&apos;);</div><div class="line">        for(var i=0;i&lt;10;i++)&#123;</div><div class="line">            if(i===9)&#123;</div><div class="line">                resolve();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        console.info(&apos;three&apos;);</div><div class="line">    &#125;).then(function()&#123;</div><div class="line">        console.info(&apos;four&apos;);</div><div class="line">    &#125;)</div><div class="line">    console.info(&apos;five&apos;);</div><div class="line">     //执行结果</div><div class="line">    // two</div><div class="line">    // three</div><div class="line">    // five</div><div class="line">    // four</div><div class="line">    // one</div></pre></td></tr></table></figure>
+<ul>
+<li>这段代码作为宏任务，进入主线程。</li>
+<li>遇到setTimeout，将其回调函数注册后分发到宏任务Event Queue。</li>
+<li>接下来遇到Promise，new Promise立即执行，then函数分发到微任务Event Queue。</li>
+<li>遇到console.info(),立即执行。</li>
+<li>整体代码script作为第一个宏任务执行结束，这时再看一下有哪些微任务，此时then在微任务Event Queue里面，执行。</li>
+<li>第一轮事件循环结束，我们开始第二轮循环，当然要从宏任务的Event Queue开始，发现了setTimeout，立即执行啦。</li>
+<li>结束</li>
+</ul>
+<p>分析一下这段代码，看看自己掌握了没有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">console.log(&apos;1&apos;);</div><div class="line"></div><div class="line">        setTimeout(function() &#123;</div><div class="line">            console.log(&apos;2&apos;);</div><div class="line">            new Promise(function(resolve) &#123;</div><div class="line">                console.log(&apos;4&apos;);</div><div class="line">                resolve();</div><div class="line">            &#125;).then(function() &#123;</div><div class="line">                console.log(&apos;5&apos;)</div><div class="line">            &#125;)</div><div class="line">        &#125;)</div><div class="line">        new Promise(function(resolve) &#123;</div><div class="line">            console.log(&apos;7&apos;);</div><div class="line">            resolve();</div><div class="line">        &#125;).then(function() &#123;</div><div class="line">            console.log(&apos;8&apos;)</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">        setTimeout(function() &#123;</div><div class="line">            console.log(&apos;9&apos;);</div><div class="line">            new Promise(function(resolve) &#123;</div><div class="line">                console.log(&apos;11&apos;);</div><div class="line">                resolve();</div><div class="line">            &#125;).then(function() &#123;</div><div class="line">                console.log(&apos;12&apos;)</div><div class="line">            &#125;)</div><div class="line">        &#125;)</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/02/js-有趣的setTimeout以及Promise/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-js-image-loaded" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -969,110 +1084,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/07/js-two-array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-css-center" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/css-center/">CSS实现水平垂直居中</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/07/css-center/" class="archive-article-date">
-  	<time datetime="2017-06-07T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天来写写css布局之实现水平垂直居中,css布局主要分为以下几块：</p>
-<ul>
-<li>盒子内部的布局<ul>
-<li>文本的布局</li>
-<li>盒模型本身的布局</li>
-</ul>
-</li>
-<li>盒子之间的布局<ul>
-<li>脱离正常流的盒子布局</li>
-<li>正常流下的盒子布局</li>
-</ul>
-</li>
-</ul>
-<h2 id="【文本的水平垂直居中–固定宽高】"><a href="#【文本的水平垂直居中–固定宽高】" class="headerlink" title="【文本的水平垂直居中–固定宽高】"></a>【文本的水平垂直居中–固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/zzGXbP" target="_blank" rel="external">DEMO链接</a></p>
-<h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">'wrap'</span>&gt;</div><div class="line">我是一行水平垂直居中的文本</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width:300px;</div><div class="line">  height:200px;</div><div class="line">  background-color:<span class="comment">#4173a2;</span></div><div class="line">  text-align:center;/*水平居中*/</div><div class="line">  line-height:200px;/*垂直居中，仅仅针对单行文字*/</div></pre></td></tr></table></figure>
-<h6 id="注：该方法仅仅适用于单行文字的水平垂直居中"><a href="#注：该方法仅仅适用于单行文字的水平垂直居中" class="headerlink" title="注：该方法仅仅适用于单行文字的水平垂直居中"></a>注：该方法仅仅适用于单行文字的水平垂直居中</h6><h2 id="【利用盒模型-paddiing-水平垂直居中-–-固定宽高】"><a href="#【利用盒模型-paddiing-水平垂直居中-–-固定宽高】" class="headerlink" title="【利用盒模型(paddiing)水平垂直居中 – 固定宽高】"></a>【利用盒模型(paddiing)水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/zzGXeE" target="_blank" rel="external">DEMO链接</a></p>
-<h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">'wrap'</span>&gt;</div><div class="line">  &lt;div class=<span class="string">'content'</span>&gt;</div><div class="line">    我是一块水平垂直居中的文本我是</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width:300px;</div><div class="line">  height:300px;</div><div class="line">&#125;</div><div class="line">.content &#123;</div><div class="line">  width:100px;</div><div class="line">  height:100px;</div><div class="line">  background-color:<span class="comment">#8b4b84;</span></div><div class="line">  padding:100px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：该方法是将content整个内容块居中"><a href="#注：该方法是将content整个内容块居中" class="headerlink" title="注：该方法是将content整个内容块居中"></a>注：该方法是将content整个内容块居中</h6><h2 id="【利用盒模型-margin-水平垂直居中-–-固定宽高】"><a href="#【利用盒模型-margin-水平垂直居中-–-固定宽高】" class="headerlink" title="【利用盒模型(margin)水平垂直居中 – 固定宽高】"></a>【利用盒模型(margin)水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/bRdyVE" target="_blank" rel="external">DEMO链接</a></p>
-<h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"content"</span>&gt;我是块水平居中&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width:100%;</div><div class="line">  height:300px;</div><div class="line">  background-color:<span class="comment">#8b4b84;</span></div><div class="line">  overflow:hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content &#123;</div><div class="line">  width:100px;</div><div class="line">  height:100px;</div><div class="line">  background-color:<span class="comment">#295782;</span></div><div class="line">  margin-top:100px;</div><div class="line">  margin:100px auto 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：该方法也是将content整个内容块居中"><a href="#注：该方法也是将content整个内容块居中" class="headerlink" title="注：该方法也是将content整个内容块居中"></a>注：该方法也是将content整个内容块居中</h6><h2 id="【利用transform水平垂直居中-–-不固定宽高】"><a href="#【利用transform水平垂直居中-–-不固定宽高】" class="headerlink" title="【利用transform水平垂直居中 – 不固定宽高】"></a>【利用transform水平垂直居中 – 不固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/pwjoZY" target="_blank" rel="external">DEMO链接</a></p>
-<h3 id="实现方式：-3"><a href="#实现方式：-3" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"translate"</span>&gt;</div><div class="line">    水平垂直居中水平垂直&lt;br&gt;</div><div class="line">    居中水平垂直居中水平&lt;br&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  position: relative;</div><div class="line">  width: 100%;</div><div class="line">  height: 200px;</div><div class="line">  border:1px solid <span class="comment">#fff;</span></div><div class="line">  background-color: <span class="comment">#8b4b84;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">.translate &#123;</div><div class="line">  position:absolute;</div><div class="line">  top:50%;</div><div class="line">  left:50%;</div><div class="line">  background:<span class="comment">#295782;</span></div><div class="line">  -webkit-transform:translate3d(-50%, -50%, 0);</div><div class="line"> transform:translate3d(-50%,-50%,0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：在PC端仅支持IE10及以上版本"><a href="#注：在PC端仅支持IE10及以上版本" class="headerlink" title="注：在PC端仅支持IE10及以上版本"></a>注：在PC端仅支持IE10及以上版本</h6><h2 id="【利用text-align水平垂直居中-–-固定宽高】"><a href="#【利用text-align水平垂直居中-–-固定宽高】" class="headerlink" title="【利用text-align水平垂直居中 – 固定宽高】"></a>【利用text-align水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/weKBoO" target="_blank" rel="external">DEMO链接</a></p>
-<h3 id="实现方式：-4"><a href="#实现方式：-4" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"ele"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width: 100%;</div><div class="line">  height: 400px;</div><div class="line">  text-align: center;</div><div class="line">  background-color: <span class="comment">#295782;</span></div><div class="line">  font-size: 0;</div><div class="line">&#125;</div><div class="line">.ele &#123;</div><div class="line">  position: absolute;</div><div class="line">  display: inline-block;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  margin-left: -50px;</div><div class="line">  margin-top: 150px;</div><div class="line">  background-color: <span class="comment">#8b4b84;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：这里text-align-center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的这篇文章"><a href="#注：这里text-align-center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的这篇文章" class="headerlink" title="注：这里text-align:center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的这篇文章"></a>注：这里text-align:center作用的是文本，但是如果absolute为inline-block的时候，就会受到文本的影响。可参考张鑫旭老师的<a href="http://www.zhangxinxu.com/wordpress/2011/12/position-absolute-text-align-center/" target="_blank" rel="external">这篇文章</a></h6><h2 id="【利用left-right-top-bottom水平垂直居中-–-固定宽高】"><a href="#【利用left-right-top-bottom水平垂直居中-–-固定宽高】" class="headerlink" title="【利用left,right,top,bottom水平垂直居中 – 固定宽高】"></a>【利用left,right,top,bottom水平垂直居中 – 固定宽高】</h2><p><a href="https://codepen.io/minwinter/pen/pwjvQb" target="_blank" rel="external">DEMO链接</a></p>
-<h3 id="实现方式：-5"><a href="#实现方式：-5" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;div class=<span class="string">"ele"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">  width: 100%;</div><div class="line">  height: 400px;</div><div class="line">  text-align: center;</div><div class="line">  background-color: <span class="comment">#295782;</span></div><div class="line">  font-size: 0;</div><div class="line">&#125;</div><div class="line">.ele &#123;</div><div class="line">  position: absolute;</div><div class="line">  display: inline-block;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  margin-left: -50px;</div><div class="line">  margin-top: 150px;</div><div class="line">  background-color: <span class="comment">#8b4b84;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度-left-right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，-ele的left-right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left-margin-right的值应该等于包含块的宽度-left的值-right的值-width的值，也就是说margin-left-margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中"><a href="#注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度-left-right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，-ele的left-right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left-margin-right的值应该等于包含块的宽度-left的值-right的值-width的值，也就是说margin-left-margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中" class="headerlink" title="注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度 + left + right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，.ele的left + right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left + margin-right的值应该等于包含块的宽度 - left的值 - right的值 - width的值，也就是说margin-left + margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中"></a>注：absolute性质的盒子，它的包含块的宽度等于它的盒模型的宽度 + left + right值，包含块的高度同理，盒模型包括margin-box、border-box、padding-box、content-box，而在这个居中方法中，.ele的left + right值是0，width是定值，width所在盒子包括了除了margin-box外的那三个box，margin都是auto值，按照上面那个公式，margin-left + margin-right的值应该等于包含块的宽度 - left的值 - right的值 - width的值，也就是说margin-left + margin-right的值等于除了width所占宽度外的剩下宽度，拥有剩下宽度后，就是平分其宽度，以让左右两边相等，达到居中</h6><h2 id="【利用float布局水平垂直居中-–-未完待续】"><a href="#【利用float布局水平垂直居中-–-未完待续】" class="headerlink" title="【利用float布局水平垂直居中 – 未完待续】"></a>【利用float布局水平垂直居中 – 未完待续】</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/07/css-center/">展开全文 >></a>
         </p>
       
 
