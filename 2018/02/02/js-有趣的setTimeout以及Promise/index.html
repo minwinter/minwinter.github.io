@@ -15,7 +15,7 @@
 <meta property="og:url" content="//minwinter.github.io/2018/02/02/js-有趣的setTimeout以及Promise/index.html">
 <meta property="og:site_name" content="minmin的博客">
 <meta property="og:description" content="有趣的setTimeout以及Promise">
-<meta property="og:updated_time" content="2018-02-02T03:40:31.000Z">
+<meta property="og:updated_time" content="2018-09-11T12:14:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="有趣的setTimeout以及Promise">
 <meta name="twitter:description" content="有趣的setTimeout以及Promise">
@@ -184,7 +184,7 @@
 <li>3秒之后，task()进入Event Queue,但是sleep太慢了，还没执行完，只能等着啦。</li>
 <li>sleep执行完啦，task()从Event Queue进入主线程执行啦。</li>
 </ul>
-<h6 id="注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"><a href="#注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。" class="headerlink" title="注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"></a>注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。</h6><h2 id="4-Promise"><a href="#4-Promise" class="headerlink" title="4.Promise"></a>4.Promise</h2><p>Promise的功能和描述就在这一篇就不做介绍了，可自行学习<br><a href="http://note.youdao.com/" target="_blank" rel="external">Promise学习</a>，来看一个例子吧。</p>
+<h6 id="注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"><a href="#注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。" class="headerlink" title="注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"></a>注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。</h6><h2 id="4-Promise"><a href="#4-Promise" class="headerlink" title="4.Promise"></a>4.Promise</h2><p>Promise的功能和描述就在这一篇就不做介绍了，可自行学习<br><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">Promise学习</a>，来看一个例子吧。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let promise = new Promise(function(resolve, reject) &#123;</div><div class="line">  console.log(&apos;Promise&apos;);</div><div class="line">  resolve();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">promise.then(function() &#123;</div><div class="line">  console.log(&apos;resolved.&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">console.log(&apos;Hi!&apos;);</div><div class="line"> //执行结果</div><div class="line"> // Promise</div><div class="line">// Hi!</div><div class="line">// resolved</div></pre></td></tr></table></figure>
 <p>上面的代码，Promise新建后立即执行，首先输出的是Promise，然后当前脚本的所有的同步任务执行完之后才执行，所以resolve最后。</p>
 <h2 id="5-宏任务，微任务"><a href="#5-宏任务，微任务" class="headerlink" title="5.宏任务，微任务"></a>5.宏任务，微任务</h2><p>除了同步任务和异步任务，还有更精细的定义：</p>
@@ -334,6 +334,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/09/09/js-git常用命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          git 常用命令
+        
+      </div>
+    </a>
   
   
     <a href="/2018/01/25/js-image-loaded/" id="article-nav-older" class="article-nav-link-wrap">

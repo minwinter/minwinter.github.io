@@ -145,6 +145,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-git常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/09/js-git常用命令/">git 常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/09/js-git常用命令/" class="archive-article-date">
+  	<time datetime="2018-09-09T08:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>都知道有点健忘，有些命令老是记不住，所以只能罗列下来帮助记忆，本篇只用来记录部分常用命令。</p>
+<h1 id="【git常用命令】"><a href="#【git常用命令】" class="headerlink" title="【git常用命令】"></a>【git常用命令】</h1><h2 id="1-初始化Git仓库"><a href="#1-初始化Git仓库" class="headerlink" title="1. 初始化Git仓库"></a>1. 初始化Git仓库</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
+</code></pre><h2 id="2-添加文件到Git仓库"><a href="#2-添加文件到Git仓库" class="headerlink" title="2. 添加文件到Git仓库"></a>2. 添加文件到Git仓库</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add file1.txt   //单个文件</div><div class="line">git add file1.txt file3.txt  //多个文件</div><div class="line">git add *   //所有更改文件</div></pre></td></tr></table></figure>
+</code></pre><h2 id="3-查看log"><a href="#3-查看log" class="headerlink" title="3.  查看log"></a>3.  查看log</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">git log //查看提交历史</div><div class="line"></div><div class="line">git log --pretty=oneline //嫌弃信息太多时的输入</div><div class="line"></div><div class="line">git reflog // 要返回未来，查看命令历史</div><div class="line"></div><div class="line">git log --oneline // 简洁的版本</div><div class="line"></div><div class="line">git log file1.txt  //查看某个文件的log</div></pre></td></tr></table></figure>
+</code></pre><h2 id="4-版本回退"><a href="#4-版本回退" class="headerlink" title="4.  版本回退"></a>4.  版本回退</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD^ // 回退上一个版本</div><div class="line"></div><div class="line"> git reset --hard HEAD～3 // 回退往上三个版本</div><div class="line"></div><div class="line"> git reset --hard commitid // 回推或者前进到某一个commit</div><div class="line"></div><div class="line"> git reset commitid file1.txt // 回退单个文件的某一个版本</div><div class="line"></div><div class="line"> git reset HEAD readme.txt //暂存区的修改撤销掉 重新放回到工作区</div></pre></td></tr></table></figure>
+</code></pre><h2 id="5-工作区、暂存区"><a href="#5-工作区、暂存区" class="headerlink" title="5. 工作区、暂存区"></a>5. 工作区、暂存区</h2><pre><code>看到的电脑目录就是工作区，一些文件做了修改，git add后变成暂存区，git commit 后提交到当前分支。
+</code></pre><h2 id="6-撤销修改-区分工作区、暂存取、当前分支"><a href="#6-撤销修改-区分工作区、暂存取、当前分支" class="headerlink" title="6. 撤销修改(区分工作区、暂存取、当前分支)"></a>6. 撤销修改(区分工作区、暂存取、当前分支)</h2>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout -- file1.txt // 包含两种情况</div><div class="line">//一 没有放到暂存区 撤销修改回到和版本库一摸一样的状态</div><div class="line">// 二 已加入暂存区，撤销回到添加到暂存区后的状态</div></pre></td></tr></table></figure>
+<h2 id="7-分支创建、删除、合并"><a href="#7-分支创建、删除、合并" class="headerlink" title="7. 分支创建、删除、合并"></a>7. 分支创建、删除、合并</h2>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git branch //查看分支</div><div class="line">git branch -b &lt;name&gt; //创建+切换分支</div><div class="line">git merge &lt;name&gt; 合并到当前分支</div><div class="line">git branch -d &lt;name&gt; 删除本地分支</div><div class="line">git push origin --delete &lt;name&gt; // 删除远程分支</div></pre></td></tr></table></figure>
+<h2 id="8-bug分支-又在开发新的功能，只做了一半，肿么办？"><a href="#8-bug分支-又在开发新的功能，只做了一半，肿么办？" class="headerlink" title="8. bug分支,又在开发新的功能，只做了一半，肿么办？"></a>8. bug分支,又在开发新的功能，只做了一半，肿么办？</h2>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">git stash //当前的工作现场‘储藏起来’，切到其他分支改bug</div><div class="line"></div><div class="line">git stash pop //恢复储藏的工作现场，同时把stash内容删除  切记一定要在先前储存过的分支做这个操作，不要跑错分支了</div><div class="line"></div><div class="line">git stash list //查看储存的工作现场</div><div class="line"></div><div class="line">git stash apply //恢复储藏的工作现场，但是没删除stash内容</div><div class="line"></div><div class="line">git stash drop //删除stash的内容</div></pre></td></tr></table></figure>
+<h2 id="9-将远程git仓库里的指定分支拉取到本地"><a href="#9-将远程git仓库里的指定分支拉取到本地" class="headerlink" title="9. 将远程git仓库里的指定分支拉取到本地"></a>9. 将远程git仓库里的指定分支拉取到本地</h2>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git checkout -b &lt;name&gt; origin/&lt;name&gt; //本地创建和远程对应的分支</div><div class="line"></div><div class="line">git branch --set-upstream &lt;name&gt; origin/&lt;name&gt; //建立本地分支和远程分支的关联</div><div class="line"></div><div class="line">git fetch  //拉取本地没有的远程新分支</div><div class="line">git checkout &lt;name&gt;//切到新分支</div></pre></td></tr></table></figure>
+<h2 id="10-rebase的使用"><a href="#10-rebase的使用" class="headerlink" title="10. rebase的使用"></a>10. rebase的使用</h2><pre><code>其实rebase没怎么用过，合并分支一直在用merge，merge虽然乱乱的，但是能体现时间线，rebase看起来简洁，但打乱了时间线，看个人爱好吧，之后有更深的体会会来补充的。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rebase &lt;name&gt; //合并分支</div></pre></td></tr></table></figure>
+</code></pre><p><a href="https://www.jianshu.com/p/4a8f4af4e803" target="_blank" rel="external">Rebase学习</a></p>
+<h2 id="11-cherry-pick"><a href="#11-cherry-pick" class="headerlink" title="11. cherry-pick"></a>11. cherry-pick</h2><p><a href="https://www.cnblogs.com/ludashi/p/8213550.html" target="_blank" rel="external">cherry-pick的学习</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/09/js-git常用命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-js-有趣的setTimeout以及Promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -185,7 +273,7 @@
 <li>3秒之后，task()进入Event Queue,但是sleep太慢了，还没执行完，只能等着啦。</li>
 <li>sleep执行完啦，task()从Event Queue进入主线程执行啦。</li>
 </ul>
-<h6 id="注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"><a href="#注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。" class="headerlink" title="注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"></a>注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。</h6><h2 id="4-Promise"><a href="#4-Promise" class="headerlink" title="4.Promise"></a>4.Promise</h2><p>Promise的功能和描述就在这一篇就不做介绍了，可自行学习<br><a href="http://note.youdao.com/" target="_blank" rel="external">Promise学习</a>，来看一个例子吧。</p>
+<h6 id="注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"><a href="#注：setTimeout-fn-0-并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。" class="headerlink" title="注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。"></a>注：setTimeout(fn,0)并不是立即执行，而是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。根据HTML的标准，最低是4毫秒。</h6><h2 id="4-Promise"><a href="#4-Promise" class="headerlink" title="4.Promise"></a>4.Promise</h2><p>Promise的功能和描述就在这一篇就不做介绍了，可自行学习<br><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">Promise学习</a>，来看一个例子吧。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let promise = new Promise(function(resolve, reject) &#123;</div><div class="line">  console.log(&apos;Promise&apos;);</div><div class="line">  resolve();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">promise.then(function() &#123;</div><div class="line">  console.log(&apos;resolved.&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">console.log(&apos;Hi!&apos;);</div><div class="line"> //执行结果</div><div class="line"> // Promise</div><div class="line">// Hi!</div><div class="line">// resolved</div></pre></td></tr></table></figure>
 <p>上面的代码，Promise新建后立即执行，首先输出的是Promise，然后当前脚本的所有的同步任务执行完之后才执行，所以resolve最后。</p>
 <h2 id="5-宏任务，微任务"><a href="#5-宏任务，微任务" class="headerlink" title="5.宏任务，微任务"></a>5.宏任务，微任务</h2><p>除了同步任务和异步任务，还有更精细的定义：</p>
@@ -1006,84 +1094,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/07/19/function-differ/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-js-two-array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/js-two-array/">JS创建二维数组</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/07/js-two-array/" class="archive-article-date">
-  	<time datetime="2017-06-07T15:57:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天写跑马灯抽奖插件遇到了二维数组，当时一脸浆糊的，今天来说说吧</p>
-<h2 id="【方式一】"><a href="#【方式一】" class="headerlink" title="【方式一】"></a>【方式一】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = [[1,2],[1,3]];</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
-<h2 id="【方式二】"><a href="#【方式二】" class="headerlink" title="【方式二】"></a>【方式二】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = new array(new array(1,2),new array(<span class="string">'a'</span>,<span class="string">'b'</span>));</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
-<h2 id="【方式三】"><a href="#【方式三】" class="headerlink" title="【方式三】"></a>【方式三】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = new array(new array(1,2),new array(<span class="string">'a'</span>,<span class="string">'b'</span>));</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
-<h2 id="【方式四】"><a href="#【方式四】" class="headerlink" title="【方式四】"></a>【方式四】</h2><h3 id="实现方式：-3"><a href="#实现方式：-3" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [];//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i].push([]);</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="【方式五】"><a href="#【方式五】" class="headerlink" title="【方式五】"></a>【方式五】</h2><h3 id="实现方式：-4"><a href="#实现方式：-4" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = new array();//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i] = new array();;</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/07/js-two-array/">展开全文 >></a>
         </p>
       
 

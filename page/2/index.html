@@ -145,6 +145,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-two-array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/js-two-array/">JS创建二维数组</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/07/js-two-array/" class="archive-article-date">
+  	<time datetime="2017-06-07T15:57:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天写跑马灯抽奖插件遇到了二维数组，当时一脸浆糊的，今天来说说吧</p>
+<h2 id="【方式一】"><a href="#【方式一】" class="headerlink" title="【方式一】"></a>【方式一】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = [[1,2],[1,3]];</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
+<h2 id="【方式二】"><a href="#【方式二】" class="headerlink" title="【方式二】"></a>【方式二】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = new array(new array(1,2),new array(<span class="string">'a'</span>,<span class="string">'b'</span>));</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
+<h2 id="【方式三】"><a href="#【方式三】" class="headerlink" title="【方式三】"></a>【方式三】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = new array(new array(1,2),new array(<span class="string">'a'</span>,<span class="string">'b'</span>));</div><div class="line">console.info(arr[1][0]);</div></pre></td></tr></table></figure>
+<h2 id="【方式四】"><a href="#【方式四】" class="headerlink" title="【方式四】"></a>【方式四】</h2><h3 id="实现方式：-3"><a href="#实现方式：-3" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [];//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i].push([]);</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="【方式五】"><a href="#【方式五】" class="headerlink" title="【方式五】"></a>【方式五】</h2><h3 id="实现方式：-4"><a href="#实现方式：-4" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = new array();//先声明一维</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;10;i++)&#123;</div><div class="line">    arr[i] = new array();;</div><div class="line">    <span class="keyword">for</span>(var j=0;j&lt;20;j++)&#123;</div><div class="line">        arr[i][j] = 1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">All</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/默认分类/" class="article-tag-list-link color5">默认分类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/07/js-two-array/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-css-center" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -326,19 +404,19 @@
 
 
   
-    <article id="post-css-layout-center" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-css-all-name" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/27/css-layout-center/">CSS实现水平垂直居中</a>
+      <a class="article-title" href="/2017/05/27/css-all-name/">CSS的缩写以及全称</a>
     </h1>
   
 
         
-        <a href="/2017/05/27/css-layout-center/" class="archive-article-date">
+        <a href="/2017/05/27/css-all-name/" class="archive-article-date">
   	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
 </a>
         
@@ -346,15 +424,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天来写写css布局之实现水平垂直居中</p>
-<h2 id="【单行文本溢出显示】"><a href="#【单行文本溢出显示】" class="headerlink" title="【单行文本溢出显示】"></a>【单行文本溢出显示】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow:hidden;</div><div class="line">text-overflow:ellipsis;</div><div class="line">white-space:nowrap;</div></pre></td></tr></table></figure>
-<h6 id="注：单行文本需要定义宽度"><a href="#注：单行文本需要定义宽度" class="headerlink" title="注：单行文本需要定义宽度"></a>注：单行文本需要定义宽度</h6><h2 id="【多行文本溢出显示实现方式一】"><a href="#【多行文本溢出显示实现方式一】" class="headerlink" title="【多行文本溢出显示实现方式一】"></a>【多行文本溢出显示实现方式一】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">display:-webkit-box;</div><div class="line">-webkit-box-orient:vertical;</div><div class="line">-webkit-line-clamp:3;</div><div class="line">overflow:hidden;</div></pre></td></tr></table></figure>
+        <p>从进入前端领域就在接触css，今天来写写部分属性的缩写以及全写</p>
+<h2 id="【font】"><a href="#【font】" class="headerlink" title="【font】"></a>【font】</h2><h3 id="简写："><a href="#简写：" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font:italic small-caps bold 12px/1.5em arial,verdana;</div></pre></td></tr></table></figure>
+<h3 id="顺序："><a href="#顺序：" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font-style | font-variant | font-weight | font-size | line-height | font-family</div></pre></td></tr></table></figure>
 <h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><ol>
-<li>-webkit-line-clamp用来限制在一个块元素显示的文本的行数。</li>
-<li>display:-webkit-box:将盒子作为弹性伸缩盒子模型显示。<br>1.-webkit-box-orient:设置或检索伸缩盒对象的子元素的排列顺序</li>
+<li>font-style:字体样式，包含 italic(斜体)／oblique(倾斜体)／normal(正体)</li>
+<li>font-variant:字体变化，包含 small-caps/normal(small-caps会导致所有小写英文字母变成小型大写字母（就是大小与小写字母相同的大写字母）)</li>
+<li>font-weight:字体粗细，包含bold/bolder/normal/500等</li>
+<li>font-size:字体大小</li>
+<li>line-height:行间距，文本航之间增加间距</li>
+<li>font-family:字体族</li>
 </ol>
-<h6 id="注：该方法只适用于Webkit浏览器以及移动端"><a href="#注：该方法只适用于Webkit浏览器以及移动端" class="headerlink" title="注：该方法只适用于Webkit浏览器以及移动端"></a>注：该方法只适用于Webkit浏览器以及移动端</h6><h2 id="【多行文本溢出显示实现方式二】"><a href="#【多行文本溢出显示实现方式二】" class="headerlink" title="【多行文本溢出显示实现方式二】"></a>【多行文本溢出显示实现方式二】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">position: relative;</div><div class="line">line-height: 20px;</div><div class="line">max-height: 40px;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div><div class="line">p:after &#123;</div><div class="line">content: <span class="string">"..."</span>;</div><div class="line">position: absolute;</div><div class="line">bottom: 0;</div><div class="line">right: 0;</div><div class="line">padding-left: 40px;</div><div class="line">background: -webkit-linear-gradient(left, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -o-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -moz-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: linear-gradient(to right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"><a href="#注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半" class="headerlink" title="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"></a>注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半</h6>
+<h6 id="注：使用字体简写，必须声明font-size以及font-family-且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size-最后是font-family-所以不太经常用这个简写"><a href="#注：使用字体简写，必须声明font-size以及font-family-且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size-最后是font-family-所以不太经常用这个简写" class="headerlink" title="注：使用字体简写，必须声明font-size以及font-family,且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size,最后是font-family,所以不太经常用这个简写"></a>注：使用字体简写，必须声明font-size以及font-family,且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size,最后是font-family,所以不太经常用这个简写</h6><h2 id="【background】"><a href="#【background】" class="headerlink" title="【background】"></a>【background】</h2><h3 id="简写：-1"><a href="#简写：-1" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background:<span class="comment">#fff url(bg.gif) no-repeat fixed left top;</span></div></pre></td></tr></table></figure>
+<h3 id="顺序：-1"><a href="#顺序：-1" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-color | background-url | background-repeat | background-attachment | background-position</div></pre></td></tr></table></figure>
+<h3 id="解释：-1"><a href="#解释：-1" class="headerlink" title="解释："></a>解释：</h3><ol>
+<li>background-color:背景色</li>
+<li>background-url:背景路径</li>
+<li>background-repeat:是否重复背景图像</li>
+<li>background-attachment:背景图片是否固定</li>
+<li>background-position:背景图像的位置</li>
+</ol>
+<h2 id="【margin-amp-padding】"><a href="#【margin-amp-padding】" class="headerlink" title="【margin&amp;padding】"></a>【margin&amp;padding】</h2><h3 id="简写：-2"><a href="#简写：-2" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin:1px 0 2px -3px;</div></pre></td></tr></table></figure>
+<h3 id="顺序：-2"><a href="#顺序：-2" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin-top | margin-right | margin-bottom | margin-left</div></pre></td></tr></table></figure>
+<h6 id="注：padding的简写和margin一样，这里就不阐述了"><a href="#注：padding的简写和margin一样，这里就不阐述了" class="headerlink" title="注：padding的简写和margin一样，这里就不阐述了"></a>注：padding的简写和margin一样，这里就不阐述了</h6><h2 id="【border】"><a href="#【border】" class="headerlink" title="【border】"></a>【border】</h2><h3 id="简写：-3"><a href="#简写：-3" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">border:1px solid <span class="comment">#000;</span></div></pre></td></tr></table></figure>
+<h3 id="顺序：-3"><a href="#顺序：-3" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">border-width | border-style | border-color</div></pre></td></tr></table></figure>
+<h6 id="注：border-top-border-right-border-bottom-border-left均可这样简写"><a href="#注：border-top-border-right-border-bottom-border-left均可这样简写" class="headerlink" title="注：border-top / border-right / border-bottom / border-left均可这样简写"></a>注：border-top / border-right / border-bottom / border-left均可这样简写</h6><h2 id="【list-style】"><a href="#【list-style】" class="headerlink" title="【list-style】"></a>【list-style】</h2><h3 id="简写：-4"><a href="#简写：-4" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list-style:square inside url(<span class="string">'/i/arrow.gif'</span>);</div></pre></td></tr></table></figure>
+<h3 id="顺序：-4"><a href="#顺序：-4" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list-style-type | list-style-position | list-style-image</div></pre></td></tr></table></figure>
+<h3 id="解释：-2"><a href="#解释：-2" class="headerlink" title="解释："></a>解释：</h3><ol>
+<li>list-style-type:列表项标记的类型，可以是实心圆(disc)、空心圆(circle)、实心方块(square)等</li>
+<li>list-style-position:在何处放置列表项标记</li>
+<li>list-style-image:使用图像来替换列表项的标记</li>
+</ol>
+
       
 
       
@@ -392,7 +493,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/27/css-layout-center/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/27/css-all-name/">展开全文 >></a>
         </p>
       
 
@@ -488,19 +589,19 @@
 
 
   
-    <article id="post-css-all-name" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-css-layout-center" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/27/css-all-name/">CSS的缩写以及全称</a>
+      <a class="article-title" href="/2017/05/27/css-layout-center/">CSS实现水平垂直居中</a>
     </h1>
   
 
         
-        <a href="/2017/05/27/css-all-name/" class="archive-article-date">
+        <a href="/2017/05/27/css-layout-center/" class="archive-article-date">
   	<time datetime="2017-05-27T15:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
 </a>
         
@@ -508,38 +609,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>从进入前端领域就在接触css，今天来写写部分属性的缩写以及全写</p>
-<h2 id="【font】"><a href="#【font】" class="headerlink" title="【font】"></a>【font】</h2><h3 id="简写："><a href="#简写：" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font:italic small-caps bold 12px/1.5em arial,verdana;</div></pre></td></tr></table></figure>
-<h3 id="顺序："><a href="#顺序：" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font-style | font-variant | font-weight | font-size | line-height | font-family</div></pre></td></tr></table></figure>
+        <p>今天来写写css布局之实现水平垂直居中</p>
+<h2 id="【单行文本溢出显示】"><a href="#【单行文本溢出显示】" class="headerlink" title="【单行文本溢出显示】"></a>【单行文本溢出显示】</h2><h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow:hidden;</div><div class="line">text-overflow:ellipsis;</div><div class="line">white-space:nowrap;</div></pre></td></tr></table></figure>
+<h6 id="注：单行文本需要定义宽度"><a href="#注：单行文本需要定义宽度" class="headerlink" title="注：单行文本需要定义宽度"></a>注：单行文本需要定义宽度</h6><h2 id="【多行文本溢出显示实现方式一】"><a href="#【多行文本溢出显示实现方式一】" class="headerlink" title="【多行文本溢出显示实现方式一】"></a>【多行文本溢出显示实现方式一】</h2><h3 id="实现方式：-1"><a href="#实现方式：-1" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">display:-webkit-box;</div><div class="line">-webkit-box-orient:vertical;</div><div class="line">-webkit-line-clamp:3;</div><div class="line">overflow:hidden;</div></pre></td></tr></table></figure>
 <h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><ol>
-<li>font-style:字体样式，包含 italic(斜体)／oblique(倾斜体)／normal(正体)</li>
-<li>font-variant:字体变化，包含 small-caps/normal(small-caps会导致所有小写英文字母变成小型大写字母（就是大小与小写字母相同的大写字母）)</li>
-<li>font-weight:字体粗细，包含bold/bolder/normal/500等</li>
-<li>font-size:字体大小</li>
-<li>line-height:行间距，文本航之间增加间距</li>
-<li>font-family:字体族</li>
+<li>-webkit-line-clamp用来限制在一个块元素显示的文本的行数。</li>
+<li>display:-webkit-box:将盒子作为弹性伸缩盒子模型显示。<br>1.-webkit-box-orient:设置或检索伸缩盒对象的子元素的排列顺序</li>
 </ol>
-<h6 id="注：使用字体简写，必须声明font-size以及font-family-且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size-最后是font-family-所以不太经常用这个简写"><a href="#注：使用字体简写，必须声明font-size以及font-family-且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size-最后是font-family-所以不太经常用这个简写" class="headerlink" title="注：使用字体简写，必须声明font-size以及font-family,且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size,最后是font-family,所以不太经常用这个简写"></a>注：使用字体简写，必须声明font-size以及font-family,且声名顺序必须按照如下：font-style、font-variant、font-weight不分先后，然后是font-size,最后是font-family,所以不太经常用这个简写</h6><h2 id="【background】"><a href="#【background】" class="headerlink" title="【background】"></a>【background】</h2><h3 id="简写：-1"><a href="#简写：-1" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background:<span class="comment">#fff url(bg.gif) no-repeat fixed left top;</span></div></pre></td></tr></table></figure>
-<h3 id="顺序：-1"><a href="#顺序：-1" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-color | background-url | background-repeat | background-attachment | background-position</div></pre></td></tr></table></figure>
-<h3 id="解释：-1"><a href="#解释：-1" class="headerlink" title="解释："></a>解释：</h3><ol>
-<li>background-color:背景色</li>
-<li>background-url:背景路径</li>
-<li>background-repeat:是否重复背景图像</li>
-<li>background-attachment:背景图片是否固定</li>
-<li>background-position:背景图像的位置</li>
-</ol>
-<h2 id="【margin-amp-padding】"><a href="#【margin-amp-padding】" class="headerlink" title="【margin&amp;padding】"></a>【margin&amp;padding】</h2><h3 id="简写：-2"><a href="#简写：-2" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin:1px 0 2px -3px;</div></pre></td></tr></table></figure>
-<h3 id="顺序：-2"><a href="#顺序：-2" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">margin-top | margin-right | margin-bottom | margin-left</div></pre></td></tr></table></figure>
-<h6 id="注：padding的简写和margin一样，这里就不阐述了"><a href="#注：padding的简写和margin一样，这里就不阐述了" class="headerlink" title="注：padding的简写和margin一样，这里就不阐述了"></a>注：padding的简写和margin一样，这里就不阐述了</h6><h2 id="【border】"><a href="#【border】" class="headerlink" title="【border】"></a>【border】</h2><h3 id="简写：-3"><a href="#简写：-3" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">border:1px solid <span class="comment">#000;</span></div></pre></td></tr></table></figure>
-<h3 id="顺序：-3"><a href="#顺序：-3" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">border-width | border-style | border-color</div></pre></td></tr></table></figure>
-<h6 id="注：border-top-border-right-border-bottom-border-left均可这样简写"><a href="#注：border-top-border-right-border-bottom-border-left均可这样简写" class="headerlink" title="注：border-top / border-right / border-bottom / border-left均可这样简写"></a>注：border-top / border-right / border-bottom / border-left均可这样简写</h6><h2 id="【list-style】"><a href="#【list-style】" class="headerlink" title="【list-style】"></a>【list-style】</h2><h3 id="简写：-4"><a href="#简写：-4" class="headerlink" title="简写："></a>简写：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list-style:square inside url(<span class="string">'/i/arrow.gif'</span>);</div></pre></td></tr></table></figure>
-<h3 id="顺序：-4"><a href="#顺序：-4" class="headerlink" title="顺序："></a>顺序：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list-style-type | list-style-position | list-style-image</div></pre></td></tr></table></figure>
-<h3 id="解释：-2"><a href="#解释：-2" class="headerlink" title="解释："></a>解释：</h3><ol>
-<li>list-style-type:列表项标记的类型，可以是实心圆(disc)、空心圆(circle)、实心方块(square)等</li>
-<li>list-style-position:在何处放置列表项标记</li>
-<li>list-style-image:使用图像来替换列表项的标记</li>
-</ol>
-
+<h6 id="注：该方法只适用于Webkit浏览器以及移动端"><a href="#注：该方法只适用于Webkit浏览器以及移动端" class="headerlink" title="注：该方法只适用于Webkit浏览器以及移动端"></a>注：该方法只适用于Webkit浏览器以及移动端</h6><h2 id="【多行文本溢出显示实现方式二】"><a href="#【多行文本溢出显示实现方式二】" class="headerlink" title="【多行文本溢出显示实现方式二】"></a>【多行文本溢出显示实现方式二】</h2><h3 id="实现方式：-2"><a href="#实现方式：-2" class="headerlink" title="实现方式："></a>实现方式：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">position: relative;</div><div class="line">line-height: 20px;</div><div class="line">max-height: 40px;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div><div class="line">p:after &#123;</div><div class="line">content: <span class="string">"..."</span>;</div><div class="line">position: absolute;</div><div class="line">bottom: 0;</div><div class="line">right: 0;</div><div class="line">padding-left: 40px;</div><div class="line">background: -webkit-linear-gradient(left, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -o-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: -moz-linear-gradient(right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">background: linear-gradient(to right, transparent, <span class="comment">#fff 55%);</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"><a href="#注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半" class="headerlink" title="注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半"></a>注：该方法其实是使用伪元素来实现，这里需要将height设置成line-height的整数倍，防止文字的露出。伪元素后面加上渐变背景可避免文字显示一半</h6>
       
 
       
@@ -577,7 +655,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/27/css-all-name/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/27/css-layout-center/">展开全文 >></a>
         </p>
       
 
